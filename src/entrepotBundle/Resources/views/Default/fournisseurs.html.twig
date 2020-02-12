@@ -1,0 +1,28 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+{% for fournisseur in fournisseurs %}
+
+    <div class="row content-panel" style="margin-bottom: 803px;width: 80%;margin-left:15%">
+        <div class="col-md-4 profile-text mt mb centered">
+            <div class="right-divider hidden-sm hidden-xs">
+                <h4>1922</h4>
+                <h6>Ventes</h6>
+                <h4>290</h4>
+                <h6>Produits disponibles</h6>
+            </div>
+        </div>
+        <div class="col-md-4 profile-text">
+            <h3>{{ fournisseur.iduser.username }}</h3>
+            <h6>{{ fournisseur.matriculefiscal }}</h6>
+            <p> {{ fournisseur.description }}</p>
+            <br>
+            <a href="{{ path('produit_responsable_select',{'id':fournisseur.id })}}"><button class="btn btn-theme"><i class="fa fa-envelope"></i> Consulter ses produits</button></a>
+        </div>
+        <div class="col-md-4 centered">
+            <div class="profile-pic">
+                <p><img src="{{ asset('back/img/'~fournisseur.image) }}" class="img-circle"></p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

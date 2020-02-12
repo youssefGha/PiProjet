@@ -1,0 +1,123 @@
+entrepot_homepage:
+    path:     /
+    defaults: { _controller: entrepotBundle:Default:index }
+
+appel_offre:
+  path:     /offre
+  defaults: { _controller: entrepotBundle:Default:offre }
+
+
+
+produit_select:
+    path:     /client/produits
+    defaults: { _controller: entrepotBundle:Produit:index }
+
+produit_responsable_select:
+    path:     /produits/{id}
+    defaults: { _controller: entrepotBundle:Produit:indexfournisseur }
+
+
+
+
+panier_select:
+    path:     /client/panier
+    defaults: { _controller: entrepotBundle:Panier:index }
+
+panier_responsable_select:
+    path:     /admin/panier
+    defaults: { _controller: entrepotBundle:Panier:indexachat }
+
+
+
+panier_add:
+    path:     /client/panier/add/{id}
+    defaults: { _controller: entrepotBundle:Panier:add }
+
+panier_responsable_add:
+    path:     /admin/add/{id}
+    defaults: { _controller: entrepotBundle:Panier:addfournisseur }
+
+
+
+panier_remove:
+    path:     /client/panier/remove/{id}
+    defaults: { _controller: entrepotBundle:Panier:remove }
+
+panier_responsable_remove:
+    path:     /admin/panier/remove/{id}
+    defaults: { _controller: entrepotBundle:Panier:removeresponsable }
+
+
+
+
+
+commande_select:
+    path:     /client/commande
+    defaults: { _controller: entrepotBundle:Commande:index }
+
+commande_responsable_select:
+    path:     /admin/commande
+    defaults: { _controller: entrepotBundle:Commande:indexachat }
+
+
+
+commande_add:
+    path:     /client/commande/add
+    defaults: { _controller: entrepotBundle:Commande:addvente }
+
+commande_responsable_add:
+    path:     /admin/commande/add
+    defaults: { _controller: entrepotBundle:Commande:addachat }
+
+
+
+commande_detail:
+    path:     /client/commande/{id}
+    defaults: { _controller: entrepotBundle:Commande:detailvente }
+
+commande_responsable_detail:
+    path:     /admin/commande/{id}
+    defaults: { _controller: entrepotBundle:Commande:detailachat }
+
+
+
+commande_remove:
+    path:     /client/commande/remove/{id}
+    defaults: { _controller: entrepotBundle:Commande:remove }
+
+commande_responsable_remove:
+    path:     /admin/commande/remove/{id}
+    defaults: { _controller: entrepotBundle:Commande:removeresponsable }
+
+
+
+
+
+fournisseur_select:
+  path:     /admin/fournisseur/select
+  defaults: { _controller: entrepotBundle:Fournisseur:index }
+
+
+
+
+
+client_home:
+    path:     /client/home
+    defaults: { _controller: entrepotBundle:Security:index }
+
+responsable_home:
+    path:     /admin/home
+    defaults: { _controller: entrepotBundle:Security:index }
+
+fournisseur_home:
+    path:     /fournisseur/home
+    defaults: { _controller: entrepotBundle:Security:index }
+
+livreur_home:
+    path:     /livreur/home
+    defaults: { _controller: entrepotBundle:Security:index }
+
+
+register_admin:
+  path:     /admin/register
+  defaults: { _controller: entrepotBundle:Security:index }

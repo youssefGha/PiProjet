@@ -1,0 +1,18 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends 'base.html.twig' %}
+{% block content %}
+<center style="margin-top: 200px;margin-bottom: 668px">
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register_livreur'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+    {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="{{ 'Inscrivez-vous!'|trans }}" />
+        </div>
+
+{{ form_end(form) }}
+</center>
+{% endblock %}
+
+
+
+

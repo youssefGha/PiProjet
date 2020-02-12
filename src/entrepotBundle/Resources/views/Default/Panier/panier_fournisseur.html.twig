@@ -1,0 +1,61 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+    {% if items|length>0 %}
+
+        <table class="table" style="margin-top: 200px;margin-bottom: 653px;margin-left: 350px">
+            <thead>
+            <tr>
+                <th style="width: 200px">Image</th>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+            <tr>
+                <td><center><img style="height:150px;width:100%px;" src="{{ asset('front/images/'~item.produit.image)}}"></center> </td>
+                <td>{{item.produit.lib}}</td>
+                <td>${{item.produit.prixachat}}</td>
+                <td>{{item.quantite}}</td>
+                <td>${{item.produit.prixachat * item.quantite}}</td>
+                <td>
+                    <a href="{{ path('panier_responsable_remove',{'id':item.produit.id })}}" class="btn btn-danger ">
+                        supprimer
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+            <td colspan="3" class="text-right">Total :</td>
+            <td></td>
+            <td>{{ total }}</td>
+            </tr>
+            <tr>
+                <td colspan="5"><a href="{{ path('commande_responsable_add')}}" class="btn btn-success btn-lg  float-right">
+                        Passer Commande
+                    </a>
+                    <a href="{{ path('produit_responsable_select',{'id': idfournisseur })}}"><i class="fa fa-mail-reply"></i></a>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    {% else %}
+       <table class="table" style="margin-top: 200px;margin-bottom: 933px;margin-left: 350px">
+        <thead>
+        <tr>
+            <th style="width: 200px">Image</th>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+        </thead>
+       </table>
+    {% endif %}
+{% endblock %}

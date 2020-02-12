@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    
+    <div class="home">
+        <div class="home_slider_container">
+
+            <div class="owl-carousel owl-theme home_slider">
+
+                <div class="owl-item home_slider_item">
+                    <div class="home_slider_background" style="background-image:url({{ asset('front/images/home_slider_1.jpg') }})"></div>
+                    <div class="home_slider_content_container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                                        <div class="home_slider_title">Restez à la pointe de la mode.</div>
+                                        <div class="button button_light home_button"><a href="#">Shop Now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="owl-item home_slider_item">
+                    <div class="home_slider_background" style="background-image:url({{ asset('front/images/home_slider_2.jpg') }})"></div>
+                    <div class="home_slider_content_container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                                        <div class="home_slider_title">Des articles pour tous vos goûts.</div>
+                                        <div class="button button_light home_button"><a href="#">Shop Now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Item -->
+                <div class="owl-item home_slider_item">
+                    <div class="home_slider_background" style="background-image:url({{ asset('front/images/home_slider_3.jpg') }})"></div>
+                    <div class="home_slider_content_container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="home_slider_content"  data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                                        <div class="home_slider_title">Une nouvelle expérience.</div>
+                                        <div class="button button_light home_button"><a href="#">Shop Now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Home Slider Dots -->
+
+            <div class="home_slider_dots_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="home_slider_dots">
+                                <ul id="home_slider_custom_dots" class="home_slider_custom_dots">
+                                    <li class="home_slider_custom_dot active">01.</li>
+                                    <li class="home_slider_custom_dot">02.</li>
+                                    <li class="home_slider_custom_dot">03.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Ads -->
+
+    <div class="avds">
+        <div class="avds_container d-flex flex-lg-row flex-column align-items-start justify-content-between">
+            <div class="avds_small">
+                <div class="avds_background" style="background-image:url({{ asset('front/images/avds_small.jpg') }})"></div>
+                <div class="avds_small_inner">
+                    <div class="avds_discount_container">
+                        <img src="images/discount.png" alt="">
+                        <div>
+                            <div class="avds_discount">
+                                <div>20<span>%</span></div>
+                                <div>Réduction</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="avds_small_content">
+                        <div class="avds_title">Tous les produits</div>
+                        <div class="avds_link"><a href="categories.html">En savoir Plus</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="avds_large">
+                <div class="avds_large_content" >
+                    <div class="avds_background" style="background-image:url({{ asset('front/images/avds_large.jpg') }})"></div>
+
+                    <div class="avds_title" style="margin-left:350px">Arborez un nouveau style</div>
+                    <div class="avds_link" style="margin-left:350px"><a href="categories.html">En savoir Plus</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div class="product_grid">
+
+                        <div class="product">
+                            <div class="product_image" style="width:300px;height:300px"><img src="{{ asset('front/images/cat_1.png') }}" alt=""></div>
+                            <div class="product_content">
+                                <div class="product_title"><a href="#">Jeans</a></div>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product_image" style="width:300px;height:300px"><img src="{{ asset('front/images/cat_2.jpg') }}" alt=""></div>
+                            <div class="product_content">
+                                <div class="product_title"><a href="#">Pulls</a></div>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product_image" style="width:300px;height:300px"><img src="{{ asset('front/images/cat_3.png') }}" alt=""></div>
+                            <div class="product_content">
+                                <div class="product_title"><a href="#">Vestes</a></div>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product_image" style="width:300px;height:300px"><img src="{{ asset('front/images/cat_4.jpg') }}" alt=""></div>
+                            <div class="product_content">
+                                <div class="product_title"><a href="#">Shorts</a></div>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product_image" style="width:300px;height:300px; padding-top: 70px;"><img src="{{ asset('front/images/cat_5.png') }}" alt=""></div>
+                            <div class="product_content">
+                                <div class="product_title"><a href="#">Baskets</a></div>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product_image" style="width:300px;height:300px"><img src="{{ asset('front/images/cat_6.jpg') }}" alt=""></div>
+                            <div class="product_content">
+                                <div class="product_title"><a href="#	">Chemises</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

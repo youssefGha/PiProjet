@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <table class="table" style="margin-top: 200px;margin-bottom: 728px;background: #FFFFFF">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Total</th>
+            <th>Date</th>
+            <th>Etat</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody style="background: #FFFFFF">
+        {% for cmd in commandes %}
+            <tr>
+                <td>{{ cmd.id }} </td>
+                <td>${{cmd.total}}</td>
+                <td>{{cmd.date|date("m/d/Y")}}</td>
+                <td>{{cmd.etat}}</td>
+                <td>
+                    <a href="{{ path('commande_detail',{'id':cmd.id })}}" class="btn btn-success ">
+                        Consulter
+                    </a>
+                    {% if cmd.etat =="non expédiée" %}
+                    <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                        Annuler
+                    </a>
+                    {% endif %}
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

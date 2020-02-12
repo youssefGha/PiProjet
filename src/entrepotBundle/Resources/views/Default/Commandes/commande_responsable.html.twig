@@ -1,0 +1,36 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+    <table class="table" style="width: 80%;margin-left:16%;margin-bottom: 955px;margin-top: 20px">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Total</th>
+            <th>Date</th>
+            <th>Etat</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cmd in commandes %}
+            <tr>
+                <td>{{ cmd.id }} </td>
+                <td>${{cmd.total}}</td>
+                <td>{{cmd.date|date("m/d/Y")}}</td>
+                <td>{{cmd.etat}}</td>
+                <td>
+                    <a href="{{ path('commande_responsable_detail',{'id':cmd.id })}}" class="btn btn-success ">
+                        Consulter
+                    </a>
+                    {% if cmd.etat =="non expédiée" %}
+                    <a href="{{ path('commande_responsable_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                        Annuler
+                    </a>
+                    {% endif %}
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

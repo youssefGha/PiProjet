@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <div class="home">
+        <div class="home_container">
+            <div class="home_background" ><img style="height: 100%;width: 100%;margin-top: 150px" src="{{ asset('front/images/categories.png') }}"/></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"  style="background: #FFFFFF">
+            <div class="product_grid" style="margin-left:400px;background: #FFFFFF">
+                {%  for produit in produits %}
+                <div class="product">
+                    <div class="product_image"><img src="{{ asset('front/images/'~produit.image) }} "style="height: 400px;width: 350px" alt=""></div>
+                    <div class="product_content">
+                        <div class="product_title"><a href="#">{{ produit.lib }}</a></div>
+                        <a href="{{ path('panier_add',{'id':produit.id })}}" class="btn btn-success" style="float : right;margin-right: 55px">
+                            Ajouter au panier
+                        </a>
+                        <div class="product_price" >${{ produit.prixvente }}
+
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

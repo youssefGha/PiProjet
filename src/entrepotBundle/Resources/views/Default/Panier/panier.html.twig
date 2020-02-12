@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    {% if items|length>0 %}
+
+        <table class="table" style="margin-top: 200px;background: #FFFFFF;margin-bottom: 507px">
+            <thead>
+            <tr>
+                <th style="width: 200px">Image</th>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+            <tr>
+                <td><center><img style="height:150px;width:100%px;" src="{{ asset('front/images/'~item.produit.image)}}"></center> </td>
+                <td>{{item.produit.lib}}</td>
+                <td>{{item.produit.prixvente}}</td>
+                <td>{{item.quantite}}</td>
+                <td>${{item.produit.prixvente * item.quantite}}</td>
+                <td>
+                    <a href="{{ path('panier_remove',{'id':item.produit.id })}}" class="btn btn-danger ">
+                        supprimer
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+            <td colspan="3" class="text-right">Total :</td>
+            <td></td>
+            <td>{{ total }}</td>
+            </tr>
+            <tr>
+                <td colspan="5"><a href="{{ path('commande_add')}}" class="btn btn-success btn-lg  float-right">
+                        Passer Commande
+                    </a></td>
+            </tr>
+            </tfoot>
+        </table>
+    {% else %}
+       <table class="table" style="margin-top: 200px;margin-bottom: 750px">
+        <thead>
+        <tr>
+            <th style="width: 200px">Image</th>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+        </thead>
+       </table>
+    {% endif %}
+{% endblock %}

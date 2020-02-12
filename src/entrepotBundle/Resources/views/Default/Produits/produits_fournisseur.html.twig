@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Dashboard">
+        <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        <title>PIMIX</title>
+
+        <!-- Favicons -->
+        <link href="{{ asset('back/img/favicon.png')}}" rel="icon">
+        <link href="{{ asset('back/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('back/lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <!--external css-->
+        <link href="{{ asset('back/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('back/css/zabuto_calendar.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('lib/gritter/css/jquery.gritter.css') }}" />
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('back/css/style.css')}}" rel="stylesheet">
+        <link href="{{ asset('back/css/style-responsive.css')}}" rel="stylesheet">
+
+        <script src="{{ asset('back/lib/chart-master/Chart.js')}}"></script>
+
+        <!-- =======================================================
+          Template Name: Dashio
+          Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+          Author: TemplateMag.com
+          License: https://templatemag.com/license/
+        ======================================================= -->
+    </head>
+<aside >
+    <div id="sidebar" class="nav-collapse " >
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion" >
+            <p class="centered"><a href="profile.html"><img src="{{ asset('back/img/ui-sam.jpg')}}" class="back/img-circle" width="80"></a></p>
+            <h5 class="centered">Sam Soffes</h5>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-cogs"></i>
+                    <span>Stock</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="index.html">Etat du Stock</a></li>
+                    <li><a href="calendar.html">Produits</a></li>
+                    <li><a href="gallery.html">Categories</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span>Fournisseurs</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="{{ path('fournisseur_select') }}">Lister</a></li>
+                    <li><a href="{{ path('commande_responsable_select') }}">Mes Commandes</a></li>
+                    <li><a href="{{ path('panier_responsable_select') }}">Panier</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-tasks"></i>
+                    <span>Réclamations</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="form_component.html">Lister</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-th"></i>
+                    <span>Livraison</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="basic_table.html">Lister les livreurs</a></li>
+                    <li><a href="responsive_table.html">Lister les livraison</a></li>
+                    <li><a href="advanced_table.html">Suivi des livraisons</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-th"></i>
+                    <span>Commande ventes</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="basic_table.html">Lister les commandes</a></li>
+                    <li><a href="responsive_table.html">Affecter une commande a un livreur</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+{% endblock %}
+{% block content %}
+    <a href="{{ path('panier_responsable_select')}}" class="btn btn-success" style="float : right;margin-right: 55px">
+        Consulter votre panier
+    </a>
+    <div class="row" style="width: 80%;margin-left:14%;margin-bottom: 378px">
+
+        <div class="col" >
+            <div class="product_grid" >
+                {%  for produit in produits %}
+                <div class="product" style="margin-top: 20px;">
+                    <div class="product_image"><img src="{{ asset('front/images/'~produit.image) }} "style="height: 400px;width: 350px" alt=""><p>{{ produit.description }}</p></div>
+                    <div class="product_content">
+                        <div class="product_title"><a href="#">{{ produit.lib }}</a></div>
+                        <a href="{{ path('panier_responsable_add',{'id':produit.id })}}" class="btn btn-success" style="float : right;margin-right: 55px">
+                            Ajouter au panier
+                        </a>
+                        <div class="product_price" >${{ produit.prixachat }}
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
