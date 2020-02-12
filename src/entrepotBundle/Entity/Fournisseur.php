@@ -47,6 +47,8 @@ class Fournisseur
     public function getIduser()
     {
         return $this->iduser;
+
+        
     }
 
     /**
