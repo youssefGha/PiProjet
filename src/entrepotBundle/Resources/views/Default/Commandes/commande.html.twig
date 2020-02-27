@@ -1,36 +1,98 @@
 {% extends 'base.html.twig' %}
 {% block content %}
-    <table class="table" style="margin-top: 200px;margin-bottom: 728px;background: #FFFFFF">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Total</th>
-            <th>Date</th>
-            <th>Etat</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody style="background: #FFFFFF">
-        {% for cmd in commandes %}
-            <tr>
-                <td>{{ cmd.id }} </td>
-                <td>${{cmd.total}}</td>
-                <td>{{cmd.date|date("m/d/Y")}}</td>
-                <td>{{cmd.etat}}</td>
-                <td>
-                    <a href="{{ path('commande_detail',{'id':cmd.id })}}" class="btn btn-success ">
-                        Consulter
-                    </a>
-                    {% if cmd.etat =="non expédiée" %}
-                    <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
-                        Annuler
-                    </a>
-                    {% endif %}
-                </td>
+    <div class="col-md-12" style="margin-top: 15rem; z-index: 5">
+        <div class="panel with-nav-tabs" style="background-color: transparent">
+            <div class="panel-heading" style="background-color: white; border: 0; margin-bottom: 2rem; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                <h3>Invoice History</h3>
+                <ul class="nav nav-tabs" style="background-color: transparent">
+                    <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
+                    <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
+                </ul>
+            </div>
+            <div class="panel-body" style="background-color: white; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                <h3>Vous avez :{{ pagination.getTotalItemCount }} Commandes</h3>
+                <div style="display: flex; justify-content: flex-end; align-items: center">
+                    <div class="" style="margin-bottom: 1rem; width: 20%">
+                        <input id="myInput" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1default">
+                        <table id="tableau" class="table" style="">
 
-            </tr>
-        {% endfor %}
-        </tbody>
+                            <thead>
+                            <tr >
+                                <th>{{ knp_pagination_sortable(pagination, 'Id', 'commandes.id') }}</th>
+                                <th{% if pagination.isSorted('commandes.total') %} class="sorted"{% endif %}>
+                                    {{ knp_pagination_sortable(pagination, 'Total', 'commandes.total') }}
+                                </th>
+                                <th{% if pagination.isSorted('commandes.Date') %} class="sorted"{% endif %}>
+                                    {{ knp_pagination_sortable(pagination, 'Date', 'commandes.date') }}
+                                </th>
+                                <th{% if pagination.isSorted('commandes.etat') %} class="sorted"{% endif %}>
+                                    {{ knp_pagination_sortable(pagination, 'Etat', 'commandes.etat') }}
+                                </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody >
 
-    </table>
+
+
+
+                            {# table body #}
+                            {% for cmd in pagination %}
+                                <tr id="id">
+                                    <td>{{ cmd.id }} </td>
+                                    <td>${{cmd.total}}</td>
+                                    <td>{{cmd.date|date("m/d/Y")}}</td>
+                                    <td>{{cmd.etat}}</td>
+                                    <td>
+                                        <a href="{{ path('commande_detail',{'id':cmd.id })}}" class="btn btn-success ">
+                                            Consulter
+                                        </a>
+                                        <a href="{{ path('generate_pdf',{'id':cmd.id })}}" class="btn btn-success ">
+                                            Génerer un pdf
+                                        </a>
+                                        {% if cmd.etat =="non expédiée" %}
+                                            <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                                                Annuler
+                                            </a>
+                                        {% endif %}
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            {# display navigation #}
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="tab2default">Default 2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <center>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </center>
+    <script>
+
+        function search() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#tableau #id").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        }
+    </script>
 {% endblock %}

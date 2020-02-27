@@ -1,0 +1,71 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <div class="row" style="margin: 0; margin-bottom: 3rem">
+    <div class="col-md-12" style="padding-left: 15%; margin-top: 5rem">
+        <div class="col-md-6">
+            <canvas id="myChart" style="padding: 1rem; box-shadow: 0 0.46875rem 2.1875rem rgba(63,106,216,0.03), 0 0.9375rem 1.40625rem rgba(63,106,216,0.03), 0 0.25rem 0.53125rem rgba(63,106,216,0.05), 0 0.125rem 0.1875rem rgba(63,106,216,0.03)"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="myChart2" style="padding: 1rem; box-shadow: 0 0.46875rem 2.1875rem rgba(63,106,216,0.03), 0 0.9375rem 1.40625rem rgba(63,106,216,0.03), 0 0.25rem 0.53125rem rgba(63,106,216,0.05), 0 0.125rem 0.1875rem rgba(63,106,216,0.03)"></canvas>
+        </div>
+    <script>
+        var ids=[];
+        var totals=[];
+        {% for id in ids %}
+            ids.push({{id}});
+        {% endfor %}
+        {% for total in totals %}
+            totals.push({{ total }})
+        {% endfor %}
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: ids,
+                datasets: [{
+                    label: 'Total par commande',
+                    backgroundColor: 'rgba(255, 99, 132,0.25)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: totals
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+    </script>
+        <script>
+            var idf=[];
+            var nbventes=[];
+            {% for id in idf %}
+            idf.push({{id}});
+            {% endfor %}
+            {% for nb in nbvente %}
+            nbventes.push({{ nb }})
+            {% endfor %}
+            var ctx = document.getElementById('myChart2').getContext('2d');
+            var myDoughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data : {
+                    datasets: [{
+                        label: 'Total par commande',
+                        backgroundColor: 'rgb(0, 99, 132)',
+                        borderColor: 'rgb(0, 99, 132)',
+                        data: nbventes
+                    }],
+
+                    // These labels appear in the legend and in the tooltips when hovering different arcs
+                    labels: idf
+                },
+
+
+            });
+        </script>
+    </div>
+    </div>
+
+{% endblock %}

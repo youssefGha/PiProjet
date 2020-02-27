@@ -1,0 +1,108 @@
+
+
+
+{% extends 'baseback.html.twig' %}
+
+{% block content %}
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <!-- page start-->
+            <div class="chat-room mt">
+                <aside class="mid-side">
+                    <div class="chat-room-head">
+                        <h3>Chat Room: Support</h3>
+                        <form action="#" class="pull-right position">
+                            <input type="text" placeholder="Search" class="form-control search-btn ">
+                        </form>
+                    </div>
+
+
+                    <table class="table" >
+                        <div class="group-rom" >
+
+                            <div class="first-part odd">Username : client</div>
+                            <div class="second-part" style="color: black;">{{ reclamation.contenu }}</div>
+                            <div class="third-part" style="color: black;">{{ reclamation.date|date }}</div>
+                        </div>
+                        <div class="group-rom">
+                            <div class="first-part odd">Responsable : responsable</div>
+                            <div class="second-part">
+                                {% if reponse.idreclamation == question.idreclamation  %}
+                                    {% if reponse.contenu == "false" %}
+                                        <p style="color: black;"> Merci de repondre le client</p>
+                                    {% else %}
+                                        <p style="color: black;">  {{ reponse.contenu }} </p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="third-part" style="color: black;">{{ reclamation.date|date }}</div>
+                        </div>
+                    </table>
+                    <footer>
+                        {{ form_start(edit_form) }}
+                        <div class="col-xs-8">
+                            <i class="fa fa-comments" aria-hidden="true"  ></i>
+                            <a > Your message : <textarea style="width: 500px;" class=" border-color-4"{{ form_widget(edit_form.contenu) }}</textarea></a>
+                        </div>
+                        <div class="btn-group hidden-sm hidden-xs">
+                            <button type="button" class="btn btn-white"><i class="fa fa-meh-o"></i></button>
+                            <button type="button" class="btn btn-white"><i class=" fa fa-paperclip"></i></button>
+                        </div>
+                        <button class="btn btn-theme" value="Send"> Send</button>
+                        {{ form_end(edit_form) }}
+                    </footer>
+                </aside>
+                <aside class="right-side">
+                    <div class="invite-row">
+                        <h4 class="pull-left">responsable</h4>
+                        <a href="{{ path('vente_listReclamation') }}" class="btn btn-theme04 pull-right">Liste_Reclamations</a>
+                    </div>
+                    <ul class="chat-available-user">
+                        <li>
+                            <div class="form" style="margin-top: 100px;">
+
+                                <div class="col-xl-6">
+
+
+                                </div>
+                                <!--<div class="col-xs-12" style="top: 30px;">
+                                            <a >Produit_id: </a>
+                                        </div>-->
+
+                            </div>
+                            <a href="chat_room.html">
+
+                                <span class="text-muted"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat_room.html">
+                                <span class="text-muted"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat_room.html">
+                                <span class="text-muted"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat_room.html">
+                                <span class="text-muted"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chat_room.html">
+                                <span class="text-muted"></span>
+                            </a>
+                        </li>
+                    </ul></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+                </aside>
+            </div>
+            <!-- page end-->
+        </section>
+        <!-- /wrapper -->
+    </section>
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+{% endblock %}

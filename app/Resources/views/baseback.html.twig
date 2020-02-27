@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #eaeaea">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>PIMIX</title>
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
     <!-- Favicons -->
     <link href="{{ asset('back/img/favicon.png')}}" rel="icon">
@@ -24,7 +24,9 @@
     <link href="{{ asset('back/css/style-responsive.css')}}" rel="stylesheet">
 
     <script src="{{ asset('back/lib/chart-master/Chart.js')}}"></script>
-
+    <!--*********************** admin back RECLAMATION *****************************
+    <link rel="stylesheet" type="text/css" href="{{ asset('back/css/util.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('back/css/main.css' )}}">-->
     <!-- =======================================================
       Template Name: Dashio
       Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -32,44 +34,52 @@
       License: https://templatemag.com/license/
     ======================================================= -->
 </head>
+<body style="background-color: #eaeaea">
 
-<body style="background: #FFFFFF">
 {% block header %}
-<section id="container" >
+
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
     <!--header start-->
 
-        <div class="top-menu">
-            <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="{{ path('fos_user_registration_register_admin') }}">Ajouter un nouveau responsable</a></li>
-                <li><a class="logout" href="{{ path('fos_user_security_logout') }}">Logout</a></li>
-            </ul>
-        </div>
+
 
     <!--header end-->
     <!--sidebar start-->
     <aside >
-        <div id="sidebar" class="nav-collapse " >
+        <div id="sidebar" class="nav-collapse " style="z-index: 5" >
             <!-- sidebar menu start-->
+            <div class="top-menu" >
+                <ul class="top-menu" >
+                    <li><a class="logout" href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+                </ul>
+            </div>
             <ul class="sidebar-menu" id="nav-accordion" >
-                <p class="centered"><a href="profile.html"><img src="{{ asset('back/img/ui-sam.jpg')}}" class="back/img-circle" width="80"></a></p>
-                <h5 class="centered">Sam Soffes</h5>
+
+                <li class="sub-menu">
+                    <a href="{{ path('fos_user_registration_register_admin') }}">
+                        <i class="fa fa-plus"></i>
+                        <span>Ajouter un responsable</span>
+                    </a>
+
+                </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-cogs"></i>
+                        <i class="fa fa-archive"></i>
                         <span>Stock</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="index.html">Etat du Stock</a></li>
-                        <li><a href="calendar.html">Produits</a></li>
-                        <li><a href="gallery.html">Categories</a></li>
+                        <li><a href="{{ path('Chart') }}">Etat du Stock</a></li>
+                        <li><a href="{{ path('categorie_index') }}">Liste des Categories</a></li>
+                        <li><a href="{{ path('produit_index') }}">Liste des Produits</a></li>
+                        <li><a href="{{ path('categorie_new') }}">Ajouter Categorie</a></li>
+                        <li><a href="{{ path('produit_new') }}">Ajouter Produit</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-briefcase"></i>
                         <span>Fournisseurs</span>
                     </a>
                     <ul class="sub">
@@ -79,32 +89,29 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-tasks"></i>
+                        <i class="fa fa-list-alt"></i>
                         <span>Réclamations</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="form_component.html">Lister</a></li>
+                        <li><a href="{{ path('vente_rech') }}">Lister</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-th"></i>
+                        <i class="fa fa-bus"></i>
                         <span>Livraison</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="basic_table.html">Lister les livreurs</a></li>
-                        <li><a href="responsive_table.html">Lister les livraison</a></li>
-                        <li><a href="advanced_table.html">Suivi des livraisons</a></li>
+                        <li><a href="{{ path('livreur_index') }}">Lister les livreurs</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-th"></i>
+                        <i class="fa fa-usd"></i>
                         <span>Commande ventes</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="basic_table.html">Lister les commandes</a></li>
-                        <li><a href="responsive_table.html">Affecter une commande a un livreur</a></li>
+                        <li><a href="{{ path('statistique_admin') }}">statistiques des ventes</a></li>
                     </ul>
                 </li>
             </ul>
@@ -190,8 +197,8 @@
         </script>
     {% endblock %}
 
-</section>
-
 </body>
+
+
 
 </html>

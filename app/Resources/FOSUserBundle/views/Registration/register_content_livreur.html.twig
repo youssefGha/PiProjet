@@ -1,18 +1,43 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% extends 'base.html.twig' %}
 {% block content %}
-<center style="margin-top: 200px;margin-bottom: 668px">
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register_livreur'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
-    {{ form_widget(form) }}
-        <div>
-            <input type="submit" value="{{ 'Inscrivez-vous!'|trans }}" />
+
+
+    <link href="{{ asset('https://www.w3schools.com/w3css/4/w3.css')}}" rel="stylesheet">
+    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
+    <div style="margin: 300px;margin-left:800px">
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register_livreur'), 'attr': {'class': 'fos_user_registration_register_livreur'}}) }}
+        <div class="w3-row w3-section" style="width: 50%">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
+            <div class="w3-rest">
+                {{ form_widget(form.email,{'attr': {'class': 'form-control','placeholder':'Adresse mail','aria-describedby':'basic-addon1'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
         </div>
-
-{{ form_end(form) }}
-</center>
+        <div class="w3-row w3-section" style="width: 50%">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+            <div class="w3-rest">
+                {{ form_widget(form.username,{'attr': {'class': 'form-control','placeholder':'Username','aria-describedby':'basic-addon1'}}) }}
+                {{ form_errors(form.username) }}
+            </div>
+        </div>
+        <div class="w3-row w3-section" style="width: 50%">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-unlock-alt"></i></div>
+            <div class="w3-rest">
+                {{ form_widget(form.plainPassword.first,{'attr': {'class': 'form-control','placeholder':'Mot de passe','aria-describedby':'basic-addon1'}}) }}
+                {{ form_errors(form.plainPassword.first) }}
+            </div>
+        </div>
+        <div class="w3-row w3-section" style="width: 50%">
+            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-unlock-alt"></i></div>
+            <div class="w3-rest">
+                {{ form_widget(form.plainPassword.second,{'attr': {'class': 'form-control','placeholder':'Comfimez le mot de passe','aria-describedby':'basic-addon1'}}) }}
+            </div>
+        </div>
+        <div>
+            <input class="btn-primary" type="submit" value="Valider" style="width: 50%"/>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
-
-
-
-

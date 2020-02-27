@@ -3,6 +3,9 @@
 
 namespace entrepotBundle\Entity;
 Use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use SBC\NotificationsBundle\Builder\NotificationBuilder;
+use SBC\NotificationsBundle\Model\NotifiableInterface;
 /**
  * @ORM\Entity
  *
@@ -17,15 +20,17 @@ class Reclamation
      */
     private $id;
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="champ vide")
      */
     private $motif;
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Champ vide")
      */
     private $contenu;
     /**

@@ -5,5 +5,16 @@ entrepot:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+entrepot_produit:
+    resource: "@entrepotBundle/Controller/ProduitController.php"
+    type:     annotation
+
+entrepot_categorie:
+    resource: "@entrepotBundle/Controller/CategorieController.php"
+    type:     annotation
+

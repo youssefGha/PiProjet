@@ -1,0 +1,129 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+
+<section style="background: #EAEAEA" id="main-content">
+    <section style="background: #EAEAEA" class="wrapper">
+        <section  class="row mt">
+
+
+            <section style="background: #EAEAEA" class="panel">
+
+                <div class="chat-room-head">
+                    <h3>Ajouter  Fournisseur</h3>
+                    <form action="#" class="pull-right position">
+
+                    </form>
+                </div>
+
+                <center>
+
+
+                    {{ form_start(form) }}
+
+                    <table>
+                        <div style="color:black" class="form-group">
+
+                            <label style="color:black" >Description: </label>
+                            {{ form_widget(form.description) }}
+                        </div>
+                        <div style="color:black" class="form-group">
+
+
+                            <label style="color:black" >Image: </label>
+                            {{ form_widget(form.image) }}
+
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+
+
+                            <label style="color:black" >Nom: </label>
+                            {{ form_widget(form.nom) }}
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+                            <label style="color:black" >Prenom: </label>
+                            {{ form_widget(form.prenom) }}
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+
+                            <label style="color:black" >Numero telephone : </label>
+                            {{ form_widget(form.numerotel) }}
+
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+
+                            <label style="color:black" >Matricule Fiscale: </label>
+                            {{ form_widget(form.matriculefiscale) }}
+
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+
+                            <label style="color:black" >EMAIL: </label>
+                            {{ form_widget(form.email) }}
+
+                        </div>
+
+
+
+
+                        {{ form_end(form) }}
+                        <div class="compose-btn">
+
+                            <button class="btn btn-sm"><i class="fa fa-times"></i> <a href="{{ path('fournisseur_affiche') }}">Back to the list</a></button>
+                        </div><br>
+
+
+                        <span class="fileupload-process"></span>
+                    </table>
+
+
+                    <input class="btn btn-info" type="submit" value="Ajouter" />
+
+                    <ul>
+                        <li>
+                        </li>
+                    </ul>
+                </center>
+
+            </section>
+        </section>
+    </section>
+
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

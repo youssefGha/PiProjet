@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <!-- Checkout -->
+    <!-- Checkout -->
+    <div class="checkout">
+        <div class="container">
+            <div class="row">
+                <!-- Billing Info -->
+                <div class="col-lg-6">
+                    <div class="billing checkout_section">
+                        <!--<div class="section_subtitle">Passer une reclamation</div>-->
+                        <div class="checkout_form_container">
+                            <div class="form"style="margin-top: 222px; color: black;">
+                                <h3 class="text-left" style="color: #21a117">Modifier une réclamation</h3><br>
+                                {{ form_start(edit_form) }}
+                                <div class="col-xl-6">
+                                    {{ form_widget(edit_form.motif) }}
+                                </div>
+                                <!--<div class="col-xs-12" style="top: 30px;">
+                                            <a >Produit_id: {{ form_widget(edit_form.id) }}</a>
+                                        </div>-->
+                            </div>
+                            <form   id="checkout_form" class="checkout_form" >
+                                <div class="col-xs-6" style="top: 50px;  color: black;">
+                                    <i class="fa fa-comments" aria-hidden="true"  ></i>
+                                    <a > Your message : <textarea class="form-control border-color-4"{{ form_widget(edit_form.contenu) }}</textarea></a>
+                                </div>
+                                <div style="top: 90px;">
+                                    <input type="submit" value="Modifier" style="color: black;" /></div>
+                                {{ form_end(edit_form) }}</form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Order Info -->
+                <div class="col-lg-6"  style="top: 200px;left: 60px;color: black;">
+                    <div class="order checkout_section">
+                        <div class="section_title"><img src="{{ asset('front/images/avds_large.jpg') }}" style="width:200px;height:200px;margin-left: 100px;"alt=""></div>
+                        <div class="section_subtitle"><h3>{{ client.iduser.username }}</h3> </div>
+                        <!-- Order details -->
+                        <div class="order_list_container">
+                            <div class="order_list_bar d-flex flex-row align-items-center justify-content-start">
+                                <div ><a href="{{ path('vente_all') }}"><h4><b>MES RECLAMATION</b></h4></a></div>
+                            </div>
+                            <ul class="order_list">
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+  {% block footer %}
+      <br><br> <br><br><br><br><br><br><br> <br><br><br><br><br>
+      <footer class="site-footer">
+          <div class="text-center" >
+              <div class="footer_logo"><a href="index.html">Sublime.</a></div>
+              <div class="copyright ml-auto mr-auto">
+                  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                  Outsiders</div>
+              <a href="index.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+  {% endblock %}

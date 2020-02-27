@@ -1,0 +1,49 @@
+{% extends 'baseback.html.twig' %}
+
+{% block content %}
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Ajouter une Categorie </h3>
+        <div class="row mb" style="padding: 2rem" >
+            <div class="col-md-12" style="padding: 2rem; background-color: white; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px">
+                <!-- page start-->
+                    {{ form_start(form) }}
+
+                <div class="form-group">
+                    <label for="subject">LIBELLE: </label>
+                    {{ form_widget(form.lib,{'attr':{'type':'text','class':'form-control','placeholder':'libelle ...'}}) }}
+                </div>
+                <div class="form-group">
+                    <label for="subject">DESCRIPTION: </label>
+                    {{ form_widget(form.description,{'attr':{'type':'text','class':'form-control','placeholder':'desc ... '}}) }}
+                </div>
+                <div class="form-group">
+                    <label for="subject">IMAGE: </label>
+                    <div class="error-message "></div>
+                    <button class="btn" style="padding: 2rem; border-radius: 10px">{{ form_widget(form.file) }}</button>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                    <a href="{{ path('categorie_index') }}"><div class="btn btn-success">Back to the list</div></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+    {{ form_end(form) }}
+
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock %}
+

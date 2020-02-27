@@ -1,123 +1,41 @@
-{% extends 'base.html.twig' %}
-{% block header %}
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="Dashboard">
-        <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-        <title>PIMIX</title>
-
-        <!-- Favicons -->
-        <link href="{{ asset('back/img/favicon.png')}}" rel="icon">
-        <link href="{{ asset('back/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-
-        <!-- Bootstrap core CSS -->
-        <link href="{{ asset('back/lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-        <!--external css-->
-        <link href="{{ asset('back/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('back/css/zabuto_calendar.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('lib/gritter/css/jquery.gritter.css') }}" />
-        <!-- Custom styles for this template -->
-        <link href="{{ asset('back/css/style.css')}}" rel="stylesheet">
-        <link href="{{ asset('back/css/style-responsive.css')}}" rel="stylesheet">
-
-        <script src="{{ asset('back/lib/chart-master/Chart.js')}}"></script>
-
-        <!-- =======================================================
-          Template Name: Dashio
-          Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-          Author: TemplateMag.com
-          License: https://templatemag.com/license/
-        ======================================================= -->
-    </head>
-<aside >
-    <div id="sidebar" class="nav-collapse " >
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu" id="nav-accordion" >
-            <p class="centered"><a href="profile.html"><img src="{{ asset('back/img/ui-sam.jpg')}}" class="back/img-circle" width="80"></a></p>
-            <h5 class="centered">Sam Soffes</h5>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-cogs"></i>
-                    <span>Stock</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="index.html">Etat du Stock</a></li>
-                    <li><a href="calendar.html">Produits</a></li>
-                    <li><a href="gallery.html">Categories</a></li>
-                </ul>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-book"></i>
-                    <span>Fournisseurs</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="{{ path('fournisseur_select') }}">Lister</a></li>
-                    <li><a href="{{ path('commande_responsable_select') }}">Mes Commandes</a></li>
-                    <li><a href="{{ path('panier_responsable_select') }}">Panier</a></li>
-                </ul>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-tasks"></i>
-                    <span>Réclamations</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="form_component.html">Lister</a></li>
-                </ul>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-th"></i>
-                    <span>Livraison</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="basic_table.html">Lister les livreurs</a></li>
-                    <li><a href="responsive_table.html">Lister les livraison</a></li>
-                    <li><a href="advanced_table.html">Suivi des livraisons</a></li>
-                </ul>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-th"></i>
-                    <span>Commande ventes</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="basic_table.html">Lister les commandes</a></li>
-                    <li><a href="responsive_table.html">Affecter une commande a un livreur</a></li>
-                </ul>
-            </li>
-        </ul>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
+{% extends 'baseback.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href={{  asset('front/styles/bootstrap4/bootstrap.min.css')}}>
+    <link rel="stylesheet" type="text/css" href={{ asset('front/plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}  >
 {% endblock %}
+
 {% block content %}
     <a href="{{ path('panier_responsable_select')}}" class="btn btn-success" style="float : right;margin-right: 55px">
         Consulter votre panier
     </a>
-    <div class="row" style="width: 80%;margin-left:14%;margin-bottom: 378px">
 
-        <div class="col" >
-            <div class="product_grid" >
-                {%  for produit in produits %}
-                <div class="product" style="margin-top: 20px;">
-                    <div class="product_image"><img src="{{ asset('front/images/'~produit.image) }} "style="height: 400px;width: 350px" alt=""><p>{{ produit.description }}</p></div>
-                    <div class="product_content">
-                        <div class="product_title"><a href="#">{{ produit.lib }}</a></div>
-                        <a href="{{ path('panier_responsable_add',{'id':produit.id })}}" class="btn btn-success" style="float : right;margin-right: 55px">
-                            Ajouter au panier
-                        </a>
-                        <div class="product_price" >${{ produit.prixachat }}
+    <div class="row" style="padding-left: 12%; margin: 0px; margin-bottom: 378px">
+        <h4 style="color: blue">Sort :</h4>
+        <div class="btn btn-success"  >{{ knp_pagination_sortable(pagination, 'lib' , 'lib')}}</div>
+        <div class="btn btn-success" >{{ knp_pagination_sortable(pagination, 'PrixAchat' , 'prixachat')}}</div>
+        <div class="btn btn-success" >{{ knp_pagination_sortable(pagination, 'PrixVente' , 'prixvente')}}</div>
+        <div class="col-md-12" >
+                {%  for produit in pagination %}
+                    <div class="col-md-3" style="box-shadow: 0 2px 8px 0 #00000047; border-radius: 5px; padding: 0px; margin: 1rem; background-color: white; width: 23%">
+                        <div class="productContainer">
+                            <img src="{{ asset('uploads/images/') }}{{ produit.nomImage  }}" alt="Product" class="image">
+                            <div class="overlayAdd">
+                                <div class="text">
+                                    <a href="{{ path('panier_responsable_add',{'id':produit.id })}}" >
+                                    <i class="fa fa-cart-plus fa-2x" aria-hidden="true" style="margin-bottom: 1rem"></i>
+                                        <br/>
+                                     Ajouter au panier</a>
+                                </div>
+                            </div>
                         </div>
 
+                        <div class="p-3" style="padding: 1rem">
+                            <h4><a href="#">{{ produit.lib }}</a></h4>
+                            <h6>{{ produit.description }}</h6>
+                            <div class="product_price" >${{ produit.prixachat }}</div>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
-            </div>
-
         </div>
     </div>
 

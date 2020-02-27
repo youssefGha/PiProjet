@@ -1,0 +1,374 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <head>
+        <script src="{{ asset('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') }}"></script>
+        <script src="{{ asset('blackknight467/StarRatingBundle/Resources/public/js/rating.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/jquery-2.2.3.min.js') }}"></script>
+        <style>
+            .rating {
+                font-size:16px;
+            }
+
+            .rating-well {
+                display: inline-block;
+                direction: rtl;
+            }
+
+            .rating input.rating {
+                display: none;
+            }
+
+            .rating div.star {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star:hover {
+                cursor:pointer;
+            }
+
+            .rating div.star:before {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.star:hover:before,.rating div.star:hover~div.star:before {
+                content:"\f005";
+                color:#e3cf7a;
+            }
+
+            .rating div.star-full {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-full:before  {
+                content:"\f005";
+                padding-right:5px;
+                color:#e3cf7a;
+            }
+
+            .rating div.star-empty {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-empty:before  {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.fa-norm {
+                font-size: 1em;
+            }
+
+            .rating div.fa-lg {
+                font-size: 1.33333333em;
+                line-height: 0.75em;
+                vertical-align: -15%;
+            }
+
+            .rating div.fa-2x {
+                font-size: 2em;
+            }
+
+            .rating div.fa-3x {
+                font-size: 3em;
+            }
+
+            .rating div.fa-4x {
+                font-size: 4em;
+            }
+
+            .rating div.fa-5x {
+                font-size: 5em;
+            }
+        </style>
+        <script type="text/javascript">
+
+
+
+            $(function(){
+
+                $( '.rating' ).click(function() {
+                    alert(parseInt($(this).find('input').val()));
+                });
+
+
+                var labelWasClicked = function labelWasClicked(){
+
+                    var input = $(this).siblings().filter('input');
+                    if (input.attr('disabled')) {
+                        return;
+                    }
+                    input.val($(this).attr('data-value'));
+
+                }
+
+                var turnToStar = function turnToStar(){
+                    if ($(this).find('input').attr('disabled')) {
+                        return;
+                    }
+                    var labels = $(this).find('div');
+                    labels.removeClass();
+                    labels.addClass('star');
+                }
+
+                var turnStarBack = function turnStarBack(){
+                    var rating = parseInt($(this).find('input').val());
+
+                    if (rating > 0) {
+                        var selectedStar = $(this).children().filter('#rating_star_'+rating)
+                        var prevLabels = $(selectedStar).nextAll();
+                        prevLabels.removeClass();
+                        prevLabels.addClass('star-full');
+                        selectedStar.removeClass();
+                        selectedStar.addClass('star-full');
+                    }
+                }
+
+                $('.star, .rating-well').click(labelWasClicked);
+                $('.rating-well').each(turnStarBack);
+                $('.rating-well').hover(turnToStar,turnStarBack);
+
+            });
+
+        </script>
+        ---------------------------
+        <link rel="stylesheet" type="text/css" href="{{ asset('blackknight467/StarRatingBundle/Resources/public/css/rating.css') }}" />
+
+
+    </head>
+
+    <!--================Header Menu Area =================-->
+
+    <!--================Home Banner Area =================-->
+    <section class="home_banner_area">
+        <div class="banner_inner">
+            <div class="container-fluid" style="padding: 20rem">
+                <div class="row" style="">
+                    <div class="col-md-4">
+                        <div class="col-md-12" style="background-color: white; margin: 1rem; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px; padding: 0px">
+                            <div style="background-color: #343a40; padding: 3rem; display: flex; justify-content: center; align-items: center; flex-direction: column; border-radius: 5px">
+                                <p><img src="{{ asset('uploads/images/' ~livreur.imagev ) }}" width="80px"height="80px" class="img-circle"></p>
+                                <h3 style="margin: 0px; color: white">{{ livreur.nom }} {{ livreur.prenom }}</h3>
+                                <h6 style="color: white">Livreur</h6>
+                                <a class="banner_btn" style="color: white" href="{{ path('livreur_editfrontlivreur', { 'id': livreur.id })}}  "><div class="btn btn-warning" style="margin: 0.5rem">Modifier</div></a>
+
+                            </div>
+                            <div style="padding: 2rem;">
+                                <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                    <h4 style="font-weight: bold">Cin</h4>
+                                    <h5>{{ livreur.cin }}</h5>
+                                </div>
+                                <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                    <h4 style="font-weight: bold">Num telephone</h4>
+                                    <h5>{{ livreur.numtel }}</h5>
+                                </div>
+                                <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                    <h4 style="font-weight: bold">Adresse</h4>
+                                    <h5>{{ livreur.adresse }}</h5>
+                                </div>
+                                <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                    <h4 style="font-weight: bold">Rating</h4>
+                                    <h5>{{ livreur.rating |rating}}</h5>
+                                </div>
+                                <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                    <h4 style="font-weight: bold">Quantité des commandes livrées</h4>
+                                    <h5>{{ quantite }}</h5>
+                                </div>
+                                <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                    <h4 style="font-weight: bold">Bénéfice</h4>
+                                    <h5>{{ benefice }} $</h5>
+                                </div>
+                                {#
+                                <div style="display: flex; justify-content: center; align-items: center; flex-direction: row; margin-top: 2rem">
+                                    <button class="btn btn-primary" style="margin: 0.5rem">  <a class="banner_btn" href="{{ path('affiche', { 'id': livreur.id })}} ">liste de commandes non traité</a></button>
+                                    <button class="btn btn-info" style="margin: 0.5rem"> <a class="banner_btn" href="{{ path('affichel', { 'id': livreur.id })}}  ">liste de commandes en train de livrer</a></button>
+                                    <button class="btn btn-danger" style="margin: 0.5rem"><a class="banner_btn" href="{{ path('affichet', { 'id': livreur.id })}}  ">liste de commandes livrée</a></button>
+                                </div>
+                                #}
+                            </div>
+
+                        </div>
+
+                        <div id="contact" class="col-md-12" style="background-color: white; margin: 1rem; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px; padding: 1rem;">
+                            <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                <h3>INFORMATIONS DE VOITURE</h3>
+                            </div>
+                            <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                <h4 style="font-weight: bold">matricule</h4>
+                                <h5>{{ livreur.matriculevoiture }}</h5>
+                            </div>
+                            <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                <h4 style="font-weight: bold">date de l'assurance</h4>
+                                <h5>{{ livreur.assurance| date("m/d/Y") }}</h5>
+                            </div>
+                            <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                                <h4 style="font-weight: bold">date du dernier entretien</h4>
+                                <h5>{{ livreur.entretien| date("m/d/Y") }}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+
+                        <div class="panel with-nav-tabs" style="background-color: transparent">
+                            <div class="panel-heading" style="background-color: white; border: 0; margin-bottom: 2rem; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                                <h3>Liste de commandes</h3>
+                                <ul class="nav nav-tabs" style="background-color: transparent">
+                                    <li class="active"><a href="#tab1default" data-toggle="tab">liste de commandes non traité</a></li>
+                                    <li><a href="#tab2default" data-toggle="tab">liste de commandes en train de livrer</a></li>
+                                    <li><a href="#tab3default" data-toggle="tab">liste de commandes livrée</a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-body" style="background-color: white; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                                <h3></h3>
+                                {#
+                                <div style="display: flex; justify-content: flex-end; align-items: center">
+                                    <div class="" style="margin-bottom: 1rem; width: 20%">
+                                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                    </div>
+                                </div>
+                                #}
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="tab1default">
+
+                                        <table class="table" >
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Total</th>
+                                                <th>Date</th>
+                                                <th>Etat</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for cmd in commande %}
+                                                <tr>
+                                                    <td>{{ cmd.id }} </td>
+                                                    <td>${{cmd.total}}</td>
+                                                    <td>{{cmd.date|date("m/d/Y")}}</td>
+                                                    <td>{{cmd.etat}}</td>
+                                                    <td>
+                                                        <a href="{{ path('consulter',{'id':cmd.id ,'li':livreur.id })}}" class="btn btn-success ">
+                                                            Consulter
+                                                        </a>
+                                                        {#{% if cmd.etat =="non expédiée" %}
+                                                            <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                                                                Annuler
+                                                            </a>
+                                                        {% endif %}#}
+                                                    </td>
+
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+
+                                        </table>
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="tab2default"> <table class="table" >
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Total</th>
+                                                <th>Date</th>
+                                                <th>Etat</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for cmd in commandeenroute %}
+                                                <tr>
+                                                    <td>{{ cmd.id }} </td>
+                                                    <td>${{cmd.total}}</td>
+                                                    <td>{{cmd.date|date("m/d/Y")}}</td>
+                                                    <td>{{cmd.etat}}</td>
+                                                    <td>
+                                                        <a href="{{ path('consultervalide',{'id':cmd.id,'li':livreur.id  })}}" class="btn btn-success ">
+                                                            Consulter
+                                                        </a>
+                                                        {#{% if cmd.etat =="non expédiée" %}
+                                                            <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                                                                Annuler
+                                                            </a>
+                                                        {% endif %}#}
+                                                    </td>
+
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+
+                                        </table></div>
+                                    <div class="tab-pane fade" id="tab3default"><table class="table" >
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Total</th>
+                                                <th>Date</th>
+                                                <th>Etat</th>
+                                                <th>Rating</th>
+
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for cmd in commandelivree %}
+                                                <tr>
+                                                    <td>{{ cmd.id }} </td>
+                                                    <td>${{cmd.total}}</td>
+                                                    <td>{{cmd.date|date("m/d/Y")}}</td>
+                                                    <td>{{cmd.etat}}</td>
+                                                    <td>{{cmd.rating|rating()}}</td>
+                                                    <td>
+                                                        <a href="{{ path('consulterfinale',{'id':cmd.id,'li':livreur.id  })}}" class="btn btn-success ">
+                                                            Consulter
+                                                        </a>
+                                                        {#{% if cmd.etat =="non expédiée" %}
+                                                            <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                                                                Annuler
+                                                            </a>
+                                                        {% endif %}#}
+                                                    </td>
+
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+
+                                        </table></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+
+
+
+{% endblock %}
+
+

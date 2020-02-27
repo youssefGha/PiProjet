@@ -1,0 +1,262 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+    <head>
+        <script src="{{ asset('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') }}"></script>
+        <script src="{{ asset('blackknight467/StarRatingBundle/Resources/public/js/rating.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/jquery-2.2.3.min.js') }}"></script>
+        <style>
+            .rating {
+                font-size:16px;
+            }
+
+            .rating-well {
+                display: inline-block;
+                direction: rtl;
+            }
+
+            .rating input.rating {
+                display: none;
+            }
+
+            .rating div.star {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star:hover {
+                cursor:pointer;
+            }
+
+            .rating div.star:before {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.star:hover:before,.rating div.star:hover~div.star:before {
+                content:"\f005";
+                color:#e3cf7a;
+            }
+
+            .rating div.star-full {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-full:before  {
+                content:"\f005";
+                padding-right:5px;
+                color:#e3cf7a;
+            }
+
+            .rating div.star-empty {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-empty:before  {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.fa-norm {
+                font-size: 1em;
+            }
+
+            .rating div.fa-lg {
+                font-size: 1.33333333em;
+                line-height: 0.75em;
+                vertical-align: -15%;
+            }
+
+            .rating div.fa-2x {
+                font-size: 2em;
+            }
+
+            .rating div.fa-3x {
+                font-size: 3em;
+            }
+
+            .rating div.fa-4x {
+                font-size: 4em;
+            }
+
+            .rating div.fa-5x {
+                font-size: 5em;
+            }
+        </style>
+        <script type="text/javascript">
+
+
+
+            $(function(){
+
+                $( '.rating' ).click(function() {
+                    alert(parseInt($(this).find('input').val()));
+                });
+
+
+                var labelWasClicked = function labelWasClicked(){
+
+                    var input = $(this).siblings().filter('input');
+                    if (input.attr('disabled')) {
+                        return;
+                    }
+                    input.val($(this).attr('data-value'));
+
+                }
+
+                var turnToStar = function turnToStar(){
+                    if ($(this).find('input').attr('disabled')) {
+                        return;
+                    }
+                    var labels = $(this).find('div');
+                    labels.removeClass();
+                    labels.addClass('star');
+                }
+
+                var turnStarBack = function turnStarBack(){
+                    var rating = parseInt($(this).find('input').val());
+
+                    if (rating > 0) {
+                        var selectedStar = $(this).children().filter('#rating_star_'+rating)
+                        var prevLabels = $(selectedStar).nextAll();
+                        prevLabels.removeClass();
+                        prevLabels.addClass('star-full');
+                        selectedStar.removeClass();
+                        selectedStar.addClass('star-full');
+                    }
+                }
+
+                $('.star, .rating-well').click(labelWasClicked);
+                $('.rating-well').each(turnStarBack);
+                $('.rating-well').hover(turnToStar,turnStarBack);
+
+            });
+
+        </script>
+        ---------------------------
+        <link rel="stylesheet" type="text/css" href="{{ asset('blackknight467/StarRatingBundle/Resources/public/css/rating.css') }}" />
+
+
+    </head>
+
+    <div class="row" style="padding-left: 11%">
+    <div class="col-md-12" >
+    <div class="panel with-nav-tabs" style="background-color: transparent">
+    <div class="panel-heading" style="background-color: white; border: 0; margin-bottom: 2rem; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+        <h3>Liste de commandes</h3>
+        <ul class="nav nav-tabs" style="background-color: transparent">
+
+            <li><a href="#tab1default" data-toggle="tab">liste de commandes en train de livrer</a></li>
+            <li><a href="#tab2default" data-toggle="tab">liste de commandes livrée</a></li>
+        </ul>
+    </div>
+    <div class="panel-body" style="background-color: white; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+        <h3></h3>
+        {#
+        <div style="display: flex; justify-content: flex-end; align-items: center">
+            <div class="" style="margin-bottom: 1rem; width: 20%">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </div>
+        </div>
+        #}
+        <div class="tab-content">
+
+            <div class="tab-pane fade in active" id="tab1default"> <table class="table" >
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                        <th>Etat</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for cmd in commandeenroute %}
+                        <tr>
+                            <td>{{ cmd.id }} </td>
+                            <td>${{cmd.total}}</td>
+                            <td>{{cmd.date|date("m/d/Y")}}</td>
+                            <td>{{cmd.etat}}</td>
+                            <td>
+                                <a href="{{ path('consulteradmin',{'id':cmd.id,'li':livreur.id  })}}" class="btn btn-success ">
+                                    Consulter
+                                </a>
+                                {#{% if cmd.etat =="non expédiée" %}
+                                    <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                                        Annuler
+                                    </a>
+                                {% endif %}#}
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table></div>
+            <div class="tab-pane fade" id="tab2default"><table class="table" >
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                        <th>Etat</th>
+                        <th>Rating</th>
+
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for cmd in commandelivree %}
+                        <tr>
+                            <td>{{ cmd.id }} </td>
+                            <td>${{cmd.total}}</td>
+                            <td>{{cmd.date|date("m/d/Y")}}</td>
+                            <td>{{cmd.etat}}</td>
+                            <td>{{cmd.rating|rating()}}</td>
+                            <td>
+                                <a href="{{ path('consulteradmin',{'id':cmd.id,'li':livreur.id  })}}" class="btn btn-success ">
+                                    Consulter
+                                </a>
+
+                                {#{% if cmd.etat =="non expédiée" %}
+                                    <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                                        Annuler
+                                    </a>
+                                {% endif %}#}
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table></div>
+        </div>
+        <a href="{{ path('livreur_index')}}" class="btn btn-success ">
+            home
+        </a>
+    </div>
+    </div>
+
+
+
+    </div>
+    </div>
+
+
+{% endblock %}

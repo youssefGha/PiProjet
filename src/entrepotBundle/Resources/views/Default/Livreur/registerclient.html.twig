@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+
+
+{% block content %}
+    <div class="checkout">
+        <div class="container" style="padding-top: 20rem">
+            <div class="row" style="display: flex; justify-content: center; align-items: center">
+                <div class="col-lg-6" style="background-color: white; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); padding: 3rem">
+                    {{ form_start(edit_form) }}
+                    <form action="#" id="checkout_form" >
+                        <div class="form-group">
+                            <label for="exampleFormControlInput11">prenom</label>
+                            {{ form_widget(edit_form.prenom,{'attr':{'type':'text','class':'form-control','placeholder':'libelle ...'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput12">nom</label>
+                            {{ form_widget(edit_form.nom,{'attr':{'type':'text','class':'form-control','placeholder':'libelle ...'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput13">adresse</label>
+                            {{ form_widget(edit_form.adresse,{'attr':{'type':'text','class':'form-control','placeholder':'libelle ...'}}) }}
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput2">num</label>
+                            {{ form_widget(edit_form.numtel,{'attr':{'type':'text','class':'form-control','placeholder':'libelle ...'}}) }}
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="">
+                                {# <button class="btn btn-theme"><a href="{{ path('livreur_edit',{'id':livreur.id}) }}"> modifier</a></button>#}
+                                <input class="btn btn-theme03" type="submit" value="Register "/>
+                            </div>
+                        </div>
+                        {{ form_end(edit_form) }}
+                    </form>
+                </div>
+
+                <!-- Billing Info -->
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

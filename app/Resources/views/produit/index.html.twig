@@ -1,0 +1,141 @@
+{% extends 'baseback.html.twig' %}
+
+{% block content %}
+    <section id="main-content">
+
+        <section class="wrapper">
+            <h3><i class="fa fa-angle-right"></i> PRODUCTS </h3>
+
+            <div class="row mb" style="padding: 2rem">
+                <div class="col-md-12" style="margin-bottom: 2rem;padding: 2rem; background-color: white; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px">
+                <!-- page start-->
+                    <div>
+                        <form class="form-inline active-purple-3 active-purple-4">
+
+                            <button type="submit" value="rechercher" class="btn" ><i class="fa fa-search" aria-hidden="true"></i></button>
+                            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                                   aria-label="Search" id="search">
+                            <a href="{{ path('produit_new') }}"><button class="btn btn-success" style="float: right">Create a new produit</button></a>
+                        </form>
+                        <div id="entitiesNav"></div>
+                        <div id="Nav"></div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    {% for produit in produits %}
+                    <div class="col-md-3" style="padding:0; margin: 1rem; background: white; border-radius: 15px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03);" >
+                        <img class="card-img-top" src="{{ asset('uploads/images/') }}{{ produit.nomImage  }}" alt="Card image cap" style="width: 100%; height: 300px; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                        <div class="card-body" style="padding: 2rem">
+                            <h4 class="card-title">{{ produit.lib }}</h4>
+                            <h5  class="card-text">{{ produit.categorie.lib }}</h5>
+                            <p class="card-text">{{ produit.description }}.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">PRIX_VENTE: {{ produit.prixVente }}</li>
+                            <li class="list-group-item">PRIX_ACHAT: {{ produit.prixAchat }}</li>
+                            <li class="list-group-item">DISPONIBILITE: {{ produit.disponibilite }}</li>
+                        </ul>
+                        <div class="card-body" style="padding: 2rem">
+                            {#
+                             <button class="btn btn-theme02"><i class="fa fa-reddit-square"></i> <a href="{{ path('produit_show', { 'id': produit.id }) }}">AFFICHER</a></button>
+                            #}
+                            <div style="display: flex; margin: 2rem; justify-content: center;">{{ socialButtons() }}</div>
+                            <div>
+                                <a href="{{ path('produit_edit', { 'id': produit.id }) }}"><div class="btn btn-primary">MODIFIER</div></a>
+                                <a href="{{ path('produit_delete', { 'id': produit.id }) }}"><div class="btn btn-danger">Supprimer</div></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+    </section>
+</section>
+
+
+
+
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+<script>
+
+    $(document).ready(function () {
+
+        var searchRequest = null;
+        $("#search").keyup(function () {
+            var minlength = 1;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $("#entitiesNav").html('');
+            if (value.length >= minlength) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('search') }}",
+                    data: {
+                        'q': value
+                    },
+                    dataType: "text",
+                    success: function (msg) {
+
+                        if (value === $(that).val()) {
+                            var result = JSON.parse(msg);
+
+                            $.each(result, function (key, arr) {
+                                $.each(arr, function (id, value) {
+                                    if (key === 'cours') {
+                                        if (id !== 'error') {
+                                            console.log(value[1]);
+
+
+
+                                            entitySelector.append(' <table table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" >\n' +
+                                               '<thead><th>LIBELLE</th><th class="hidden-phone">PRIX_VENTE</th><th class="hidden-phone">PRIX_ACHAT</th><th class="hidden-phone">DISPONIBILITE</th><th class="hidden-phone">DESCRIPTION</th>'+
+                                                '<th class="hidden-phone">IMAGE</th><th class="hidden-phone">CATEGORIE</th><th class="hidden-phone">ACTION</th></thead>'+
+                                                '<tr align=" center" >\n' +
+                                                '    <td>' + value[0] + '</td>\n' +
+
+
+                                                '   <td>' + value[1] + '</td> '+
+                                                '   <td>' + value[2] + '</td> '+
+                                                '   <td>' + value[3] + '</td> '+
+                                                '   <td>' + value[4] + '</td> '+
+                                                '   <td><img src="{{ asset ('uploads/images/') }}'+value[5]+'"  ></td> '+
+                                                '   <td>' + value[6] + '</td> '+
+                                                '<td><button class="btn btn-theme02"><i class="fa fa-reddit-square"></i>{% for produit in produits %} <a href="    {{ path('produit_show', { 'id': produit.id }) }} {% endfor %}">Voir Plus </a></button></td>'
+                                                +
+                                                '    </table>');
+
+                                            $('#hidden-table-info').hide();
+
+
+
+
+                                        } else {
+
+                                            $('#hidden-table-info').show();
+                                        }
+
+                                    }
+
+                                });
+                            });
+
+
+                        }
+
+                    }
+
+
+                });
+            } else {$('#hidden-table-info').show();}
+        });
+    });
+</script>
+
+
+{% endblock %}

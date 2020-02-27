@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <table class="table" style="margin-top: 200px">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Total</th>
+            <th>Date</th>
+            <th>Etat</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cmd in commande %}
+            <tr>
+                <td>{{ cmd.id }} </td>
+                <td>${{cmd.total}}</td>
+                <td>{{cmd.date|date("m/d/Y")}}</td>
+                <td>{{cmd.etat}}</td>
+                <td>
+                    <a href="{{ path('consultervalide',{'id':cmd.id,'li':livreur.id  })}}" class="btn btn-success ">
+                        Consulter
+                    </a>
+                    {#{% if cmd.etat =="non expédiée" %}
+                        <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                            Annuler
+                        </a>
+                    {% endif %}#}
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+    <a href="{{ path('neji_homepage', { 'id': livreur.id })}}" class="btn btn-secondary ">
+        home
+    </a>
+{% endblock %}

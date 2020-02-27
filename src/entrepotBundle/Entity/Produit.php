@@ -4,9 +4,13 @@
 namespace entrepotBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 Use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @ORM\Entity
+ * Produit
  *
+ * @ORM\Table(name="produit")
+ * @ORM\Entity(repositoryClass="entrepotBundle\Repository\ProduitRepository")
  */
 class Produit
 {
@@ -38,14 +42,21 @@ class Produit
      */
     private $description;
     /**
-     * @ORM\Column(type="string")
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
-    private $image;
+    private $nomImage;
+
+    /**
+     * @Assert\File(maxSize="1000k")
+     */
+    private $file;
     /**
      * @ORM\ManyToOne(targetEntity="Categorie")
      * @ORM\JoinColumn(name="idcategorie",referencedColumnName="Id")
      */
-    private  $idcategorie;
+    private  $categorie;
     /**
      * @ORM\ManyToMany(targetEntity="fournisseur", inversedBy="produits", cascade={"persist"})
      * @ORM\JoinTable(
@@ -76,6 +87,69 @@ class Produit
         $this->fournisseurs = $fournisseurs;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param mixed $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNomImage()
+    {
+        return $this->nomImage;
+    }
+
+    /**
+     * @param string $nomImage
+     */
+    public function setNomImage($nomImage)
+    {
+        $this->nomImage = $nomImage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    public function getWebPath(){
+        return null===$this->nomImage ? null : 'images/uploads/'.$this->nomImage;
+    }
+    protected  function getUploadRootDir(){
+        return __DIR__.'../../../../web/images/uploads';
+    }
+    protected function getUploadDir(){
+        return 'images/uploads';
+    }
+    public function uploadProfilePicture($path){
+        $nom = $this->file->getClientOriginalName();
+        $this->file->move($path,$this->file->getClientOriginalName());
+        $this->nomImage=$this->file->getClientOriginalName();
+        $this->nomImage=$nom;
+    }
     /**
      * @return int
      */

@@ -48,6 +48,17 @@ panier_responsable_remove:
     defaults: { _controller: entrepotBundle:Panier:removeresponsable }
 
 
+panier_increment:
+  path:     /panier/increment/{id}
+  defaults: { _controller: entrepotBundle:Panier:increment }
+
+panier_decrement:
+  path:     /panier/decrement/{id}
+  defaults: { _controller: entrepotBundle:Panier:decrement }
+generate_pdfadmin:
+  path:     admin/generate/{id}
+  defaults: { _controller: entrepotBundle:Livreurcommande:generatepdf }
+
 
 
 
@@ -97,8 +108,13 @@ fournisseur_select:
   path:     /admin/fournisseur/select
   defaults: { _controller: entrepotBundle:Fournisseur:index }
 
+demande:
+  path:       /demande/{id}
+  defaults: { _controller: entrepotBundle:Fournisseur:demande }
 
-
+demandeSupprime:
+  path:       /demandesupprime/{id}
+  defaults: { _controller: entrepotBundle:Fournisseur:supprimerD }
 
 
 client_home:
@@ -110,14 +126,243 @@ responsable_home:
     defaults: { _controller: entrepotBundle:Security:index }
 
 fournisseur_home:
-    path:     /fournisseur/home
+    path:     /home/fournisseur
     defaults: { _controller: entrepotBundle:Security:index }
 
 livreur_home:
-    path:     /livreur/home
+    path:     /home/{id}
     defaults: { _controller: entrepotBundle:Security:index }
 
 
 register_admin:
   path:     /admin/register
   defaults: { _controller: entrepotBundle:Security:index }
+
+
+generate_pdf:
+  path:     /generate/{id}
+  defaults: { _controller: entrepotBundle:Commande:generatepdf }
+
+generate_admin_pdf:
+  path:     /admin/generate/{id}
+  defaults: { _controller: entrepotBundle:Commande:generatepdfadmin }
+
+statistique_admin:
+  path:     /admin/statistiques
+  defaults: { _controller: entrepotBundle:Statistique:index }
+
+
+
+vente_homepage:
+  path:     /PasserReclamation
+  defaults: { _controller: entrepotBundle:Vente:PasserReclamation }
+vente_all:
+  path:     /ConsulterReclamation
+  defaults: { _controller: entrepotBundle:Vente:ConsulterReclamation }
+vente_modifier:
+  path:     /ModiferReclamation/{id}
+  defaults: { _controller: entrepotBundle:Vente:modifierReclamation }
+vente_remove:
+  path:     /remove/{id}
+  defaults: { _controller: entrepotBundle:Vente:remove }
+
+vente_listReclamation:
+  path:     /listReclamation
+  defaults: { _controller: entrepotBundle:Vente:listReclamation }
+
+vente_edit:
+  path:     /editReponse/{id}
+  defaults: { _controller: entrepotBundle:Vente:editReponse }
+
+vente_delete:
+  path:     /delete/{id}
+  defaults: { _controller: entrepotBundle:Vente:delete }
+
+vente_chat:
+  path:     /chat/{id}
+  defaults: { _controller: entrepotBundle:Vente:Chat }
+
+
+vente_room:
+  path:     /room/{id}
+  defaults: { _controller: entrepotBundle:Vente:chatClient }
+
+
+vente_indexFront:
+  path:     /indexFront
+  defaults: { _controller: entrepotBundle:Vente:indexFront }
+vente_indexBack:
+  path:     /
+  defaults: { _controller: entrepotBundle:Vente:indexBack }
+
+vente_rech:
+  path:     /recherche
+  defaults: { _controller: entrepotBundle:Vente:rechercheReclamation }
+
+vente_notifdelete:
+  path:     /deletenotif/{id}
+  defaults: { _controller: entrepotBundle:Vente:deleteNotification }
+
+vente_notifdeleteall:
+  path:     /deletenotifall
+  defaults: { _controller: entrepotBundle:Vente:allNotification }
+
+
+vente_forum:
+  path:     /forum
+  defaults: { _controller: entrepotBundle:Vente:Forum }
+
+vente_reponseForum:
+  path:     /Forumchat/{id}
+  defaults: { _controller: entrepotBundle:Vente:Forumchat }
+
+
+
+fournisseur_affiche:
+  path:     /affiche/fournisseur
+  defaults: { _controller: entrepotBundle:Fournisseur:affiche }
+
+fournisseur_supprimer:
+  path:     /supprimer/fournisseur/{id}
+  defaults: { _controller: entrepotBundle:Fournisseur:supprimer }
+
+demandeaffiche:
+  path:       /demandeaffiche/{id}
+  defaults: { _controller: entrepotBundle:Fournisseur:demandeaffiche }
+
+fournisseur_update:
+  path:     /update/fournisseur/{id}
+  defaults: { _controller: entrepotBundle:Fournisseur:update }
+
+fournisseur_Ajout:
+  path:     /ajout/fournisseur
+  defaults: { _controller: entrepotBundle:Fournisseur:ajout }
+
+Produit_affiche:
+  path:     /produit/affiche
+  defaults: { _controller: entrepotBundle:Produit:afficheP }
+
+
+Produit_ajout:
+  path:     /produit/ajout/{id}
+  defaults: { _controller: entrepotBundle:Produit:ajoutP }
+
+Produit_supprimer:
+  path:     /produit/supprimer/{id}
+  defaults: { _controller: entrepotBundle:Produit:supprimerP }
+
+Produit_update:
+  path:     /produit/update/{id}
+  defaults: { _controller: entrepotBundle:Produit:updateP }
+
+update_FournisseurById:
+  path:     /updateFournisseurById
+  defaults: { _controller: entrepotBundle:Fournisseur:updateFournisseurById}
+
+
+calcule:
+  path:     /calcule/{id}
+  defaults: { _controller: entrepotBundle:Commande:calcule }
+
+fournisseur_recherche:
+  path:     /fournisseur/recherche
+  defaults: { _controller: entrepotBundle:Fournisseur:recherche }
+
+
+
+
+bar:
+  path:     /bar
+  defaults: { _controller: entrepotBundle:Fournisseur:bar }
+
+fourni:
+  path:     /fourni
+  defaults: { _controller: entrepotBundle:Fournisseur:fourni }
+
+
+
+
+
+entrepot_livreur:
+  resource: "@entrepotBundle/Resources/config/routing/livreur.yml"
+  prefix:   /livreur
+
+
+
+livreur_index:
+  path:     /admin/liste
+  defaults: { _controller: entrepotBundle:Livreur:index }
+  methods:  GET
+livreur_show:
+  path:    /admin/{id}/show
+  defaults: { _controller: entrepotBundle:Livreur:show }
+  methods:  GET
+livreur_edit:
+  path:    /admin/edit/{id}
+  defaults: { _controller: entrepotBundle:Livreur:edit }
+  methods:  [GET, POST]
+listecommandeadmin:
+  path:    /admin/listecommande/{id}
+  defaults: { _controller: entrepotBundle:Livreurcommande:affichecommandeadmin }
+  methods:  [GET, POST]
+test_car_delete:
+  path:    /admin/delete/{qdt}
+  defaults: { _controller: entrepotBundle:Livreur:delete }
+
+consulteradmin:
+  path:    /admin/{id}/{li}/consulteradmin
+  defaults: { _controller: entrepotBundle:Livreurcommande:consulteradmin }
+
+
+
+
+
+produit_delete:
+  path:     /produit/delete/{id}
+  defaults: { _controller: entrepotBundle:Produit:delete }
+
+deleteC:
+  path:     /deleteC/{id}
+  defaults: { _controller: entrepotBundle:Categorie:deleteC }
+
+indexF:
+  path:     /indexF
+  defaults: { _controller: entrepotBundle:Produit:indexF }
+
+indexfront:
+  path:     /indexfront
+  defaults: { _controller: entrepotBundle:Categorie:indexfront }
+
+Chart:
+  path:     /Stat
+  defaults: { _controller: entrepotBundle:Stat:Stat }
+
+search:
+  path:     /search
+  defaults: { _controller: entrepotBundle:Produit:search }
+
+produit_index:
+  path:     /produits
+  defaults: { _controller: entrepotBundle:Produit:indexproduit }
+
+
+produit_new:
+  path:     /produit/new
+  defaults: { _controller: entrepotBundle:Produit:new }
+
+
+produit_show:
+  path:     /produit/show/{id}
+  defaults: { _controller: entrepotBundle:Produit:show }
+
+produit_edit:
+  path:     /produit/edit/{id}
+  defaults: { _controller: entrepotBundle:Produit:edit }
+client_register:
+  path:     /editfront/{id}
+  defaults: { _controller: entrepotBundle:Livreur:editclient }
+  methods:  [GET, POST]
+fournissuer_register:
+  path:     /fournisseur/editfront/{id}
+  defaults: { _controller: entrepotBundle:Livreur:editfournisseur }
+  methods:  [GET, POST]

@@ -1,1 +1,173 @@
-<p>Bonjour cher fournisseur</p>
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href={{  asset('front/styles/bootstrap4/bootstrap.min.css')}}>
+    <link rel="stylesheet" type="text/css" href={{ asset('front/plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}  >
+    <style>
+        .productContainer {
+            position: relative;
+        }
+
+        .image {
+            display: block;
+            width: 100%;
+            border-radius: 5px;
+            height: 200px;
+        }
+
+        .overlayRemove {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: red;
+            border-radius: 5px;
+        }
+
+        .overlayAdd {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: blue;
+            border-radius: 5px;
+        }
+
+        .productContainer:hover .overlayRemove {
+            opacity: 0.8;
+        }
+
+        .productContainer:hover .overlayAdd {
+            opacity: 0.8;
+        }
+
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+<div  style="margin-left:80px">
+    <a href="{{ path('fos_user_security_logout') }}" style="width: 50%"><button  style=" background-color: gray; padding: 1rem; border-radius: 0.5rem; color: white">Se déconnecter</button></a>
+    <a href="{{ path('demande',{'id':id }) }}" style="width: 50%"><button  style=" background-color: gray; padding: 1rem; border-radius: 0.5rem; color: white">Passer demande</button></a>
+</div>
+<div class="row p-5" style="margin: 0px">
+    <div class="col-md-12" style="margin-bottom: 5rem;"></div>
+    <div style="position:fixed; margin-left: 2rem">
+        <h3>Benivenue!</h3>
+        <h4>Ajouter ou supprimer les produits que vous fournissez!</h4>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3 p-3 m-3" style="position: fixed;box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                <div class="col-md-12 mb-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{{ asset('back/img/'~fournisseur.image) }}" style="width: 100px; height: 100px; border-radius: 50%">
+                        </div>
+                        <div class="col-md" style="display: flex; flex-direction: column; justify-content: center;">
+                            <h4>{{ fournisseur.nom }} {{ fournisseur.prenom }}</h4>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; border: #dee2e6 solid 1px; padding: 1rem" >
+                                <i class="fa fa-money fa-2x mb-3" aria-hidden="true"></i>
+                                <h4 style="margin: 0; margin-bottom: 1rem">{{ totalvente }}</h4>
+                                <h6 style="margin: 0">Ventes</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; border: #dee2e6 solid 1px; padding: 1rem" >
+                                <i class="fa fa-shopping-cart fa-2x mb-3" aria-hidden="true"></i>
+                                <h4 style="margin: 0; margin-bottom: 1rem">{{nbproduit}}</h4>
+                                <h6 style="margin: 0">Produits</h6>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-12">
+                        <h5>Description</h5>
+                        <h6>{{ fournisseur.description }}</h6>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-3 m-4"></div>
+
+            <div class="col-md m-3" style="box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                <div class="row">
+                    {% for produit in produits %}
+                    <div class="m-3" style="box-shadow: 0 2px 8px 0 #E9E9E9; border-radius: 5px; padding: 0px; width: 45.33%;">
+
+                        <div class="productContainer">
+                            <img src="{{ asset('uploads/images/') }}{{ produit.nomImage  }}" alt="Product" class="image">
+                            <div class="overlayRemove">
+                                <div class="text">
+                                    <a href="{{ path('Produit_supprimer',{'id':produit.id })}}">
+                                    <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                                    <p>Supprimer le produit</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3">
+                            <h4>{{ produit.lib }}</h4>
+                            <h6>{{ produit.description }}</h6>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md m-3" style="box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                <div class="row">
+                    {% for produit in notproduits %}
+                    <div class="m-3" style="box-shadow: 0 2px 8px 0 #E9E9E9; border-radius: 5px; padding: 0px; width: 45.33%;">
+
+                        <div class="productContainer">
+                            <img src="{{ asset('uploads/images/') }}{{ produit.nomImage  }}" alt="Product" class="image">
+                            <div class="overlayAdd">
+                                <div class="text">
+                                    <a href="{{ path('Produit_ajout',{'id':produit.id })}}">
+                                    <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+                                    <p>Add Product</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3">
+                            <h4>{{ produit.lib }}</h4>
+                            <h6>{{ produit.description }}</h6>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

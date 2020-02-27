@@ -1,5 +1,158 @@
 {% extends 'base.html.twig' %}
 {% block content %}
+    <head>
+        <script src="{{ asset('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') }}"></script>
+        <script src="{{ asset('blackknight467/StarRatingBundle/Resources/public/js/rating.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/jquery-2.2.3.min.js') }}"></script>
+        <style>
+            .rating {
+                font-size:16px;
+            }
+
+            .rating-well {
+                display: inline-block;
+                direction: rtl;
+            }
+
+            .rating input.rating {
+                display: none;
+            }
+
+            .rating div.star {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star:hover {
+                cursor:pointer;
+            }
+
+            .rating div.star:before {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.star:hover:before,.rating div.star:hover~div.star:before {
+                content:"\f005";
+                color:#e3cf7a;
+            }
+
+            .rating div.star-full {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-full:before  {
+                content:"\f005";
+                padding-right:5px;
+                color:#e3cf7a;
+            }
+
+            .rating div.star-empty {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-empty:before  {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.fa-norm {
+                font-size: 1em;
+            }
+
+            .rating div.fa-lg {
+                font-size: 1.33333333em;
+                line-height: 0.75em;
+                vertical-align: -15%;
+            }
+
+            .rating div.fa-2x {
+                font-size: 2em;
+            }
+
+            .rating div.fa-3x {
+                font-size: 3em;
+            }
+
+            .rating div.fa-4x {
+                font-size: 4em;
+            }
+
+            .rating div.fa-5x {
+                font-size: 5em;
+            }
+        </style>
+        w        <script type="text/javascript">
+
+
+
+            $(function(){
+
+                $( '.rating' ).click(function() {
+                    alert(parseInt($(this).find('input').val()));
+                });
+
+
+                var labelWasClicked = function labelWasClicked(){
+
+                    var input = $(this).siblings().filter('input');
+                    if (input.attr('disabled')) {
+                        return;
+                    }
+                    input.val($(this).attr('data-value'));
+
+                }
+
+                var turnToStar = function turnToStar(){
+                    if ($(this).find('input').attr('disabled')) {
+                        return;
+                    }
+                    var labels = $(this).find('div');
+                    labels.removeClass();
+                    labels.addClass('star');
+                }
+
+                var turnStarBack = function turnStarBack(){
+                    var rating = parseInt($(this).find('input').val());
+
+                    if (rating > 0) {
+                        var selectedStar = $(this).children().filter('#rating_star_'+rating)
+                        var prevLabels = $(selectedStar).nextAll();
+                        prevLabels.removeClass();
+                        prevLabels.addClass('star-full');
+                        selectedStar.removeClass();
+                        selectedStar.addClass('star-full');
+                    }
+                }
+
+                $('.star, .rating-well').click(labelWasClicked);
+                $('.rating-well').each(turnStarBack);
+                $('.rating-well').hover(turnToStar,turnStarBack);
+
+            });
+
+        </script>
+        ---------------------------
+        <link rel="stylesheet" type="text/css" href="{{ asset('blackknight467/StarRatingBundle/Resources/public/css/rating.css') }}" />
+
+
+    </head>
     <center>
     <section class="wrapper" style="height: 1000px;width: 1500px;margin-top: 220px">
         <div class="col-lg-12 mt">
@@ -9,6 +162,7 @@
                         <!-- /pull-left -->
                         <div class="pull-right">
                             <h2>Commande</h2>
+                            <h2>{{ commande.etat }}</h2>
                         </div>
                         <!-- /pull-right -->
                         <div class="clearfix"></div>
@@ -17,10 +171,10 @@
                         <br>
                         <div class="row">
                             <div class="col-md-9">
-                                <h4>Nom du client</h4>
+                                <h4>{{commande.idclient.nom}}  {{ commande.idclient.prenom }}</h4>
                                 <address>
-                                    <strong>adresse</strong><br>
-                                    <abbr title="Phone">P:</abbr> (+216) 26 000 000
+                                    <strong>{{ commande.idclient.adresse }}</strong><br>
+                                    <abbr title="Phone">P:</abbr> (+216) {{ commande.idclient.numtel }}
                                 </address>
                             </div>
                             <!-- /col-md-9 -->
@@ -37,6 +191,14 @@
                                     <div class="pull-right"> {{ commande.date | date("m/d/Y") }} </div>
                                     <div class="clearfix"></div>
                                 </div>
+                                {% if commande.etat=="en route" %}
+                                    <div>
+                                        <!-- /col-md-3 -->
+                                        <div class="pull-left"> tempsrestant : </div>
+                                        <div class="pull-right"> {{ commande.tempsrestant  }} </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                {% endif %}
                             </div>
                             <!-- /invoice-body -->
                         </div>
@@ -76,8 +238,33 @@
                                 </td>
                                 <td class="text-right"><strong>${{ commande.total + 6 }}</strong></td>
                             </tr>
+                            <tr>
+                                <td colspan="2" rowspan="4">
+                                    {% if commande.etat=="livrée" %}
+                                        {{ form_start(form) }}
+
+
+                                        <p type="submit" class="rating">  {{  form_widget(form.rating )  }}</p>
+
+                                        <input type="submit" value="Valider" class="btn btn-primary"/>
+
+                                        {{ form_end(form) }}
+                                    {% endif %}
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
+                        <td>
+                            {#<a href="{{ path('valide',{'id':commande.id ,'li':livreur.id })}}">valide</a>#}
+                            <div  style="color: black; justify-content: center; align-items: center; display: flex">
+
+                                <div style="display: flex; justify-content: center; align-items: center">
+                                    <a href="{{ path('commande_select') }}" class="btn btn-danger" style="margin-top: 1rem">retour</a>
+                                    {# <input type="submit" value="valider " style="color: white; margin-top: 1rem" class="btn btn-primary"/>#}
+                                </div>
+
+                            </div>
+                        </td>
                         <br>
                         <br>
                     </div>

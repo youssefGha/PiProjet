@@ -1,29 +1,43 @@
 {% extends 'baseback.html.twig' %}
 {% block content %}
+<div style="padding-top: 50px"></div>
+        <div class="row" style="padding-left: 10%; margin: 0px; margin-bottom: 378px">
+        <div class="col-md-12" >
+            <h2 style="margin-bottom: 50px">My Shopping Cart</h2>
+            <div style="background-color: white; padding: 3rem;">
     {% if items|length>0 %}
-
-        <table class="table" style="margin-top: 200px;margin-bottom: 653px;margin-left: 350px">
+        <table class="table">
             <thead>
             <tr>
-                <th style="width: 200px">Image</th>
+                <th>Image</th>
                 <th>Produit</th>
                 <th>Prix</th>
                 <th>Quantité</th>
                 <th>Total</th>
-                <th></th>
+                <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
             {% for item in items %}
             <tr>
-                <td><center><img style="height:150px;width:100%px;" src="{{ asset('front/images/'~item.produit.image)}}"></center> </td>
+                <td><img style="height:150px;width:100px" src="{{ asset('front/images/'~item.produit.image)}}"></td>
                 <td>{{item.produit.lib}}</td>
                 <td>${{item.produit.prixachat}}</td>
-                <td>{{item.quantite}}</td>
+                <td>
+                    <div class="product_quantity clearfix" style="margin-left:20px;margin-top:-20px">
+                        <div style="display: flex; flex-direction: row; align-items: center;margin-top: 2rem">
+                            {% if item.quantite>1 %}
+                                <a href="{{ path('panier_decrement',{'id':item.produit.id })}}"><button onclick="qtdecrement()" style="height: 3rem; width: 3rem; background-color: gray; color: white; border: 0; border-radius: 5px;">-</button></a>
+                            {% endif %}
+                            <div style="height: 3rem; width: 3rem; display: flex; justify-content: center; align-items: center; border: 1px solid gray; border-radius: 5px">{{item.quantite}}</div>
+                            <a href="{{ path('panier_increment',{'id':item.produit.id })}}"> <button onclick="qtincrement()" style="height: 3rem; width: 3rem; background-color: blue; color: white; border: 0; border-radius: 5px">+</button></a>
+                        </div>
+                    </div>
+                </td>
                 <td>${{item.produit.prixachat * item.quantite}}</td>
                 <td>
                     <a href="{{ path('panier_responsable_remove',{'id':item.produit.id })}}" class="btn btn-danger ">
-                        supprimer
+                        X
                     </a>
                 </td>
             </tr>
@@ -39,16 +53,16 @@
                 <td colspan="5"><a href="{{ path('commande_responsable_add')}}" class="btn btn-success btn-lg  float-right">
                         Passer Commande
                     </a>
-                    <a href="{{ path('produit_responsable_select',{'id': idfournisseur })}}"><i class="fa fa-mail-reply"></i></a>
+                    <a href="{{ path('produit_responsable_select',{'id': idfournisseur })}}" class="btn btn-danger btn-lg  float-right"><i class="fa fa-mail-reply"></i></a>
                 </td>
             </tr>
             </tfoot>
         </table>
-    {% else %}
-       <table class="table" style="margin-top: 200px;margin-bottom: 933px;margin-left: 350px">
+        {% else %}
+       <table class="table">
         <thead>
         <tr>
-            <th style="width: 200px">Image</th>
+            <th>Image</th>
             <th>Produit</th>
             <th>Prix</th>
             <th>Quantité</th>
@@ -58,4 +72,8 @@
         </thead>
        </table>
     {% endif %}
+        </div>
+    </div>
+            </div>
+
 {% endblock %}

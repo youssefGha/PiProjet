@@ -1,0 +1,34 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+
+    <section id="main-content">
+    <section class="wrapper">
+        <h1><i class="fa fa-angle-right"></i> Etat du Stock </h1>
+    <div class="row mb">
+    <!-- page start-->
+
+
+        <html>
+            <body>
+
+            <div style="padding: 30px; display: flex; justify-content: center">
+                <div id="div_chart" style="box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)"></div>
+            </div>
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+            <script type="text/javascript">
+
+                {{ gc_draw(piechart, 'div_chart') }}
+            </script>
+
+            </body>
+        </html>
+
+    </div>
+
+
+
+    </section>
+    </section>
+{% endblock %}

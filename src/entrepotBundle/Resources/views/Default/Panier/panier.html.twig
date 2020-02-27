@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block content %}
+    <div style="padding: 10rem;">
     {% if items|length>0 %}
 
-        <table class="table" style="margin-top: 200px;background: #FFFFFF;margin-bottom: 507px">
+        <table class="table" style="margin-top: 200px;margin-bottom: 507px;">
             <thead>
             <tr>
                 <th style="width: 200px">Image</th>
@@ -15,18 +16,28 @@
             </thead>
             <tbody>
             {% for item in items %}
-            <tr>
-                <td><center><img style="height:150px;width:100%px;" src="{{ asset('front/images/'~item.produit.image)}}"></center> </td>
-                <td>{{item.produit.lib}}</td>
-                <td>{{item.produit.prixvente}}</td>
-                <td>{{item.quantite}}</td>
-                <td>${{item.produit.prixvente * item.quantite}}</td>
-                <td>
-                    <a href="{{ path('panier_remove',{'id':item.produit.id })}}" class="btn btn-danger ">
-                        supprimer
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td><img class="card-img-top" src="{{ asset('uploads/images/') }}{{ item.produit.nomImage  }}" alt="Card image cap" style="width: 100%; height: 300px; border-top-left-radius: 15px; border-top-right-radius: 15px;"></td>
+                    <td>{{item.produit.lib}}</td>
+                    <td>${{item.produit.prixvente}}</td>
+                    <td>
+                        <div class="product_quantity clearfix" style="margin-left:20px;margin-top:-20px">
+                            <div style="display: flex; flex-direction: row; align-items: center;margin-top: 2rem">
+                                {% if item.quantite>1 %}
+                                    <a href="{{ path('panier_decrement',{'id':item.produit.id })}}"><button onclick="qtdecrement()" style="height: 3rem; width: 3rem; background-color: gray; color: white; border: 0; border-radius: 5px;">-</button></a>
+                                {% endif %}
+                                <div style="height: 3rem; width: 3rem; display: flex; justify-content: center; align-items: center; border: 1px solid gray; border-radius: 5px">{{item.quantite}}</div>
+                                <a href="{{ path('panier_increment',{'id':item.produit.id })}}"> <button onclick="qtincrement()" style="height: 3rem; width: 3rem; background-color: blue; color: white; border: 0; border-radius: 5px">+</button></a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${{item.produit.prixvente * item.quantite}}</td>
+                    <td>
+                        <a href="{{ path('panier_remove',{'id':item.produit.id })}}" class="btn btn-danger ">
+                            X
+                        </a>
+                    </td>
+                </tr>
             {% endfor %}
             </tbody>
             <tfoot>
@@ -43,7 +54,7 @@
             </tfoot>
         </table>
     {% else %}
-       <table class="table" style="margin-top: 200px;margin-bottom: 750px">
+       <table class="table" style="margin-top: 200px;margin-bottom: 750px;">
         <thead>
         <tr>
             <th style="width: 200px">Image</th>
@@ -56,4 +67,5 @@
         </thead>
        </table>
     {% endif %}
+    </div>
 {% endblock %}

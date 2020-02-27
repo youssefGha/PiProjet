@@ -1,0 +1,36 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    {% for d in demandes %}
+        {% if d.fournisseur == fournisseur %}
+            <div class="row content-panel" style="margin-bottom: 20px;width: 80%;margin-left:15%">
+                <div class="col-md-4 profile-text mt mb centered">
+                    <div class="right-divider hidden-sm hidden-xs">
+                    </div>
+                </div>
+
+                <div class="col-md-4 centered">
+                    <h1 class="colored-label">{{ d.description }}</h1>
+                    <div class="compose-btn">
+                        <ul>
+                            <li>
+                                <a href="{{ path('demandeSupprime', {'id':d.id }) }}"><button class="btn btn-theme">Supprimer</button></a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <style>
+        .colored-label {
+            color: 	#000000;
+            /* other styles */
+        }
+    </style>
+{% endblock %}

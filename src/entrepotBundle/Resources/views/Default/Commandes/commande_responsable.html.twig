@@ -1,36 +1,136 @@
 {% extends 'baseback.html.twig' %}
 {% block content %}
-    <table class="table" style="width: 80%;margin-left:16%;margin-bottom: 955px;margin-top: 20px">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Total</th>
-            <th>Date</th>
-            <th>Etat</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for cmd in commandes %}
-            <tr>
-                <td>{{ cmd.id }} </td>
-                <td>${{cmd.total}}</td>
-                <td>{{cmd.date|date("m/d/Y")}}</td>
-                <td>{{cmd.etat}}</td>
-                <td>
-                    <a href="{{ path('commande_responsable_detail',{'id':cmd.id })}}" class="btn btn-success ">
-                        Consulter
-                    </a>
-                    {% if cmd.etat =="non expédiée" %}
-                    <a href="{{ path('commande_responsable_remove',{'id':cmd.id })}}" class="btn btn-danger ">
-                        Annuler
-                    </a>
-                    {% endif %}
-                </td>
+    <div class="row" style="margin: 0">
+        <div class="col-md-12" style="padding-left: 12%; padding-right: 2%; margin-top: 2rem">
+            <div class="col-md-12" style="margin-bottom: 2rem; background-color: white; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                <div class="col-md-4" style="display: flex; flex-direction: column; justify-content: center;align-items: center; padding: 3rem;">
+                    <h4 style="margin:0; margin-bottom: 1rem;">Ventes genérées</h4>
+                    <h3 style="margin: 0px;color: green">${{ totalvente }}</h3>
+                </div>
+                <div class="col-md-4" style="display: flex; flex-direction: column; justify-content: center;align-items: center; padding: 3rem;">
+                    <h4 style="margin:0; margin-bottom: 1rem;">Montant des achats</h4>
+                    <h3 style="margin: 0px;color: red">${{ totalachat }}</h3>
+                </div>
+                <div class="col-md-4" style="display: flex; flex-direction: column; justify-content: center;align-items: center; padding: 3rem;">
+                    <h4 style="margin:0; margin-bottom: 1rem;">Recette</h4>
+                    <h3 style="margin: 0px;color: blue">${{ totalvente-totalachat }}</h3>
+                </div>
+            </div>
+        </div>
 
-            </tr>
-        {% endfor %}
-        </tbody>
+        <div class="col-md-12" style="padding-left: 12%; padding-right: 2%; margin-top: 0rem">
+            <div class="panel with-nav-tabs" style="background-color: transparent">
+                <div class="panel-heading" style="background-color: white; border: 0; margin-bottom: 2rem; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                    <h3>Invoice History</h3>
+                    <ul class="nav nav-tabs" style="background-color: transparent">
+                        <li class="active"><a href="#tab1default" data-toggle="tab">Commande d'achats</a></li>
+                        <li><a href="#tab2default" data-toggle="tab">Commande de ventes</a></li>
 
-    </table>
+                    </ul>
+                </div>
+                <div class="panel-body" style="background-color: white; border-radius: 5px; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03)">
+                    <div style="display: flex; justify-content: flex-end; align-items: center">
+                        <div class="" style="margin-bottom: 1rem; width: 20%">
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1default">
+                            <table id="tableau" class="table" style="">
+                                <thead>
+                                <tr>
+                                    <th >ID</th>
+                                    <th>Total</th>
+                                    <th>Date</th>
+                                    <th>Etat</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cmd in commandes %}
+                                    <tr id="id">
+                                        <td>{{ cmd.id }} </td>
+                                        <td>${{cmd.total}}</td>
+                                        <td>{{cmd.date|date("m/d/Y")}}</td>
+                                        <td>{{cmd.etat}}</td>
+                                        <td>
+                                            <a href="{{ path('commande_responsable_detail',{'id':cmd.id })}}" class="btn btn-success ">
+                                                Consulter
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('generate_admin_pdf',{'id':cmd.id })}}" class="btn btn-success ">
+                                                Génerer un pdf
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if cmd.etat =="non expédiée" %}
+                                                <a href="{{ path('commande_responsable_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                                                    Annuler
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade in active" id="tab2default">
+                            <table id="tableau" class="table" style="">
+                                <thead>
+                                <tr>
+                                    <th >ID</th>
+                                    <th>Total</th>
+                                    <th>Date</th>
+                                    <th>Etat</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cmd in ventes %}
+                                    <tr id="id">
+                                        <td>{{ cmd.id }} </td>
+                                        <td>${{cmd.total}}</td>
+                                        <td>{{cmd.date|date("m/d/Y")}}</td>
+                                        <td>{{cmd.etat}}</td>
+                                        <td>
+                                            <a href="{{ path('commande_detail',{'id':cmd.id })}}" class="btn btn-success ">
+                                                Consulter
+                                            </a>
+                                            <a href="{{ path('generate_pdf',{'id':cmd.id })}}" class="btn btn-success ">
+                                                Génerer un pdf
+                                            </a>
+                                            {% if cmd.etat =="non expédiée" %}
+                                                <a href="{{ path('commande_remove',{'id':cmd.id })}}" class="btn btn-danger ">
+                                                    Annuler
+                                                </a>
+                                            {% endif %}
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function search() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#tableau #id").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        }
+    </script>
 {% endblock %}

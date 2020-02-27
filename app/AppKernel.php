@@ -19,6 +19,12 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new entrepotBundle\entrepotBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new SBC\NotificationsBundle\NotificationsBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

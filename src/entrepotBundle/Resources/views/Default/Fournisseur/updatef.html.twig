@@ -1,0 +1,50 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+
+<section style="background: #EAEAEA" id="main-content">
+    <section style="background: #EAEAEA" class="wrapper">
+        <div class="row mb" style="padding: 2rem" >
+            <div class="col-md-12" style="padding: 2rem; background-color: white; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px">
+                <!-- page start-->
+                {{ form_start(form) }}
+
+                <div class="form-group">
+                    <label for="subject">NOM: </label>
+                    {{ form_widget(form.nom,{'attr': {'class': 'form-control','placeholder':'Nom','aria-describedby':'basic-addon1',}}) }}
+                </div>
+                <div class="form-group">
+                    <label for="subject">PRENOM: </label>
+                    {{ form_widget(form.prenom,{'attr': {'class': 'form-control','placeholder':'Prénom','aria-describedby':'basic-addon1',}}) }}
+                </div>
+                <div class="form-group">
+                    <label for="subject">NUMERO TEL: </label>
+                    {{ form_widget(form.numerotel,{'attr': {'class': 'form-control','placeholder':'Numéro de téléphone','aria-describedby':'basic-addon1',}}) }}
+                </div>
+                <div class="form-group">
+                    <label for="subject">DESCRIPTION: </label>
+                    {{ form_widget(form.description,{'attr': {'class': 'form-control','placeholder':'Description','aria-describedby':'basic-addon1',}}) }}
+                </div>
+                <div class="form-group">
+                    <label for="subject">MATRICULE FISCALE: </label>
+                    {{ form_widget(form.matriculefiscale,{'attr': {'class': 'form-control','placeholder':'Prénom','aria-describedby':'basic-addon1',}}) }}
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">IMAGE: </label>
+                    <div class="error-message "></div>
+                    <button class="btn" style="padding: 2rem; border-radius: 10px"> {{ form_widget(form.image,{'attr': {'class': 'btn btn-primary'}}) }}</button>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Modifier" class="btn btn-success" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+</section>
+
+
+
+    {% endblock %}

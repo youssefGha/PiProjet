@@ -1,0 +1,234 @@
+{% extends 'baseback.html.twig' %}
+
+{% block content %}
+    <head>
+        <script src="{{ asset('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') }}"></script>
+        <script src="{{ asset('blackknight467/StarRatingBundle/Resources/public/js/rating.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/jquery-2.2.3.min.js') }}"></script>
+        <style>
+            .rating {
+                font-size:16px;
+            }
+
+            .rating-well {
+                display: inline-block;
+                direction: rtl;
+            }
+
+            .rating input.rating {
+                display: none;
+            }
+
+            .rating div.star {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star:hover {
+                cursor:pointer;
+            }
+
+            .rating div.star:before {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.star:hover:before,.rating div.star:hover~div.star:before {
+                content:"\f005";
+                color:#e3cf7a;
+            }
+
+            .rating div.star-full {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-full:before  {
+                content:"\f005";
+                padding-right:5px;
+                color:#e3cf7a;
+            }
+
+            .rating div.star-empty {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-empty:before  {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.fa-norm {
+                font-size: 1em;
+            }
+
+            .rating div.fa-lg {
+                font-size: 1.33333333em;
+                line-height: 0.75em;
+                vertical-align: -15%;
+            }
+
+            .rating div.fa-2x {
+                font-size: 2em;
+            }
+
+            .rating div.fa-3x {
+                font-size: 3em;
+            }
+
+            .rating div.fa-4x {
+                font-size: 4em;
+            }
+
+            .rating div.fa-5x {
+                font-size: 5em;
+            }
+        </style>
+        w        <script type="text/javascript">
+
+
+
+            $(function(){
+
+                $( '.rating' ).click(function() {
+                    alert(parseInt($(this).find('input').val()));
+                });
+
+
+                var labelWasClicked = function labelWasClicked(){
+
+                    var input = $(this).siblings().filter('input');
+                    if (input.attr('disabled')) {
+                        return;
+                    }
+                    input.val($(this).attr('data-value'));
+
+                }
+
+                var turnToStar = function turnToStar(){
+                    if ($(this).find('input').attr('disabled')) {
+                        return;
+                    }
+                    var labels = $(this).find('div');
+                    labels.removeClass();
+                    labels.addClass('star');
+                }
+
+                var turnStarBack = function turnStarBack(){
+                    var rating = parseInt($(this).find('input').val());
+
+                    if (rating > 0) {
+                        var selectedStar = $(this).children().filter('#rating_star_'+rating)
+                        var prevLabels = $(selectedStar).nextAll();
+                        prevLabels.removeClass();
+                        prevLabels.addClass('star-full');
+                        selectedStar.removeClass();
+                        selectedStar.addClass('star-full');
+                    }
+                }
+
+                $('.star, .rating-well').click(labelWasClicked);
+                $('.rating-well').each(turnStarBack);
+                $('.rating-well').hover(turnToStar,turnStarBack);
+
+            });
+
+        </script>
+        ---------------------------
+        <link rel="stylesheet" type="text/css" href="{{ asset('blackknight467/StarRatingBundle/Resources/public/css/rating.css') }}" />
+
+
+    </head>
+
+    <section id="main-content">
+        <section class="wrapper site-min-height" style="margin-top: 0px">
+            <div class="row" style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+                <div class="col-md-6" style="background-color: white; width: 48.8%; margin: 1rem; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px; padding: 0px">
+                    <div style="background-color: #343a40; padding: 3rem; display: flex; justify-content: center; align-items: center; flex-direction: column; border-radius: 5px">
+                        <p><img src="{{ asset('uploads/images/' ~livreur.imagev ) }}" width="80px"height="80px" class="img-circle"></p>
+                        <h3 style="margin: 0px; color: white">{{ livreur.nom }} {{ livreur.prenom }}</h3>
+                        <h6 style="color: white">Livreur</h6>
+                    </div>
+                    <div style="padding: 2rem;">
+                        <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                            <h4 style="font-weight: bold">Cin</h4>
+                            <h5>{{ livreur.cin }}</h5>
+                        </div>
+                        <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                            <h4 style="font-weight: bold">Num telephone</h4>
+                            <h5>{{ livreur.numtel }}</h5>
+                        </div>
+                        <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                            <h4 style="font-weight: bold">Adresse</h4>
+                            <h5>{{ livreur.adresse }}</h5>
+                        </div>
+                        <div style="display: flex; justify-content: center; align-items: center; flex-direction: row; margin-top: 2rem">
+                            <button class="btn btn-primary" style="margin: 0.5rem">  <a href="{{ path('livreur_index') }}" style="color: white">Back to the list</a></button>
+                            <button class="btn btn-info" style="margin: 0.5rem"> <a href="{{ path('livreur_edit', { 'id': livreur.id }) }}" style="color: white">modifier</a></button>
+                            <button class="btn btn-danger" style="margin: 0.5rem"> <a href="{{ path('test_car_delete', { 'qdt': livreur.id }) }}" style="color: white">supprimer</a></button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="contact" class="col-md-6" style="background-color: white; width: 48.8%; margin: 1rem; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px; padding: 1rem;">
+                    <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                        <h3>INFORMATIONS DE VOITURE</h3>
+                    </div>
+                    <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                        <h4 style="font-weight: bold">matricule</h4>
+                        <h5>{{ livreur.matriculevoiture }}</h5>
+                    </div>
+                    <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                        <h4 style="font-weight: bold">date de l'assurance</h4>
+                        <h5>{{ livreur.assurance| date("m/d/Y") }}</h5>
+                    </div>
+                    <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                        <h4 style="font-weight: bold">date du dernier entretien</h4>
+                        <h5>{{ livreur.entretien| date("m/d/Y") }}</h5>
+                    </div>
+                    <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                        <h4 style="font-weight: bold">Rating</h4>
+                        <h5>{{ livreur.rating|rating }}</h5>
+                    </div>
+                    <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                        <h4 style="font-weight: bold">Quantité des commandes livrées</h4>
+                        <h5>{{ quantite }}</h5>
+                    </div>
+                    <div style="border-bottom: 0.1px solid #e9ecef; padding: 5px">
+                        <h4 style="font-weight: bold">Bénéfice</h4>
+                        <h5>{{ benefice }} $</h5>
+                    </div>
+
+                    <!-- /col-md-6 -->
+
+                    <!-- /col-md-6 -->
+
+                    <!-- /row -->
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+
+
+
+
+
+{% endblock %}

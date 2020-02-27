@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <script>
+        $(document).ready(function () {
+
+            $("#span2").hide();
+            $("#span1").hide();
+            $("#span4").hide();
+            $("#span5").hide();
+            $("#span6").hide();
+
+            $('#jardinbundle_personnel_nom').keyup(function () {
+
+                var nom = $('#jardinbundle_personnel_nom').val();
+                var test=/^[A-Za-z]+$/;
+                if (test.test(nom)) {
+
+                    $('#span2').hide();
+
+                    $('#ajouter').prop('disabled', false);
+
+                } else {
+                    $('#span2').show();
+
+
+
+                    $('#ajouter').prop('disabled', true);
+                }
+            });
+
+
+
+        })
+    </script>
+    <!-- Checkout -->
+
+    <div class="row" style="margin: 0; margin-top: 20rem">
+        <div class="col-md-12" style="padding: 1rem 30rem">
+            <div class="row">
+                <div class="col-md-12" style="box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03); padding: 3rem">
+                    <div >
+                        <h4 >Passer une réclamation</h4>
+                        <div class="col-md-12" style="padding: 2rem;text-align: right;bottom: 5rem;">
+                            <div class="btn btn-secondary"><a style="color: white" href="{{ path('vente_all') }}">MES RECLAMATION</a></div>
+                            <div class="btn btn-secondary"><a style="color: white" href="{{ path('vente_forum') }}">FORUM</a></div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div>
+                        <div class="form" style="margin-top: 0px; color: black;">
+                            Motif:{{ form_start(form) }}
+                            <div style="width: 100%; margin-bottom: 1rem">
+                                {{ form_widget(form.motif) }}
+                            </div>
+                            <!--<div class="col-xs-12" style="top: 30px;">
+                                            <a >Produit_id: {{ form_widget(form.id) }}</a>
+                                        </div>-->
+                        </div>
+                        <form   id="checkout_form">
+                            <div class="form-group">
+                                <i class="fa fa-comments" aria-hidden="true"  ></i>
+                                <a> Your message : <span  id="span2">*required</span><textarea style="" class="form-control"
+                                    {{ form_widget(form.contenu) }}</textarea></a>
+                            </div>
+                            <div style="">
+                                <input type="submit" value="Passer une Reclamation" class="btn btn-primary" /></div>
+                            {{ form_end(form) }}</form>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

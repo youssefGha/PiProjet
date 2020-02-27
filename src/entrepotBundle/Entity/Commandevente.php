@@ -17,6 +17,18 @@ class Commandevente
      */
     private $id;
     /**
+     * @ORM\Column(type="datetime",nullable=true)
+     */
+    private $tempsvalidation;
+    /**
+     * @ORM\Column(type="string",nullable=true)
+     */
+    private $tempsrestant;
+    /**
+     * @ORM\Column(type="integer",nullable= true)
+     */
+    private $rating;
+    /**
      * @ORM\Column(type="float")
      */
     private $total;
@@ -71,6 +83,55 @@ class Commandevente
     {
         $this->total = $total;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTempsvalidation()
+    {
+        return $this->tempsvalidation;
+    }
+
+    /**
+     * @param mixed $tempsvalidation
+     */
+    public function setTempsvalidation($tempsvalidation)
+    {
+        $this->tempsvalidation = $tempsvalidation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTempsrestant()
+    {
+        return $this->tempsrestant;
+    }
+
+    /**
+     * @param mixed $tempsrestant
+     */
+    public function setTempsrestant($tempsrestant)
+    {
+        $this->tempsrestant = $tempsrestant;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param mixed $rating
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    }
+
 
     /**
      * @return mixed

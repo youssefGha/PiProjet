@@ -27,7 +27,9 @@ class PanierController extends Controller
             $total+=$totalitem;
         }
         $session->set('total',$total);
+
         return $this->render('@entrepot/Default/panier/panier.html.twig',['items'=>$panierwithdata,'total'=>$total]);
+        dump($json_session);
     }
     public function indexachatAction(Request $request)
     {
@@ -62,7 +64,7 @@ class PanierController extends Controller
         }
         $session->set('panier',$panier);
         $produits=$this->getDoctrine()->getRepository(Produit::class)->findAll();
-        return $this->render('@entrepot/Default/Produits/produits.html.twig',array('produits'=>$produits));
+        return $this->redirectToRoute('panier_select');
     }
     public function addfournisseurAction($id,Request $request)
     {
@@ -98,5 +100,30 @@ class PanierController extends Controller
         }
         $session->set('panier',$panier);
         return $this->redirectToRoute('panier_responsable_select');
+    }
+
+    public function incrementAction($id,Request $request){
+        $session=$request->getSession();
+        $panier=$session->get('panier',[]);
+        $panier[$id]++;
+        $session->set('panier',$panier);
+        $authChecker=$this->container->get('security.authorization_checker');
+        if ($authChecker->isGranted('ROLE_ADMIN')){
+
+            return $this->redirectToRoute('panier_responsable_select');
+        }
+        else return $this->redirectToRoute('panier_select');
+    }
+    public function decrementAction($id,Request $request){
+        $session=$request->getSession();
+        $panier=$session->get('panier',[]);
+        $panier[$id]--;
+        $session->set('panier',$panier);
+        $authChecker=$this->container->get('security.authorization_checker');
+        if ($authChecker->isGranted('ROLE_ADMIN')){
+
+            return $this->redirectToRoute('panier_responsable_select');
+        }
+        else return $this->redirectToRoute('panier_select');
     }
 }

@@ -1,0 +1,76 @@
+{% extends 'baseback.html.twig' %}
+
+{% block content %}
+
+
+
+    <section id="main-content">
+        <section class="wrapper">
+            <h3><i class="fa fa-angle-right"></i> Ajouter un Produit </h3>
+            <div class="row mb" style="padding: 2rem">
+                <!-- page start-->
+            <div class="col-md-12" style="padding: 2rem; background-color: white; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px">
+                        {{ form_start(form) }}
+
+                 <div class="form-group">
+                     <label for="subject">LIBELLE: </label>
+                     <div class="error-message "></div>
+                     {{ form_widget(form.lib,{'attr':{'type':'text','class':'form-control','placeholder':'libelle'}}) }}
+                 </div>
+                <div class="form-group">
+                    <label>PRIX ACHAT : </label>
+                    <div class="error-message "></div>
+                    {{ form_widget(form.prixAchat,{'attr':{'type':'','class':'form-control ','placeholder':'prix...'}}) }}
+                </div>
+
+                <div class="form-group">
+
+                    <label >PRIX VENTE : </label>
+                    <div class="error-message "></div>
+                    {{ form_widget(form.prixVente,{'attr':{'type':'','class':'form-control ','placeholder':'prix...'}}) }}
+
+                </div>
+
+                                    <div class="form-group">
+
+                                        <label for="exampleInputEmail1">DISPONBILITE: </label>
+                                        <div class="error-message "></div>
+                                        {{ form_widget(form.disponibilite,{'attr':{'type':'text','class':'form-control ','placeholder':'Name...'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+
+                                            <label for="exampleInputEmail1">DESCRIPTION:  </label>
+                                        <div class="error-message "></div>
+                                            {{ form_widget(form.description,{'attr':{'type':'text','class':'form-control','placeholder':'description'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> IMAGE: </label>
+                                        <div class="error-message "></div>
+                                        <button class="btn" style="padding: 2rem; border-radius: 10px">{{ form_widget(form.file) }}</button>
+                                    </div>
+                                    <div class="form-group">
+
+                                            <label for="exampleInputEmail1">CATEGORIE:  </label>
+                                            <div class="error-message "></div>
+                                            {{ form_widget(form.categorie,{'attr':{'type':'text','class':'form-control','placeholder':'description'}}) }}
+                                    </div>
+
+                                <input type="submit" value="Create" class="btn btn-success" />
+
+                                <a href="{{ path('produit_index') }}"><div class="btn btn-success"> BACK TO THE LIST</div></a>
+
+
+
+
+
+
+            </div>
+</div>
+
+        </section>
+        </section>
+
+            {{ form_end(form) }}
+{% endblock %}

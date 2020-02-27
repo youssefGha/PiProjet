@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <!--main content start-->
+    <section id="main-content" style="margin-top: 10rem;margin-left: 5rem;">
+        <section class="wrapper site-min-height">
+            <!-- page start-->
+            <div class="chat-room mt">
+                <aside class="mid-side">
+                    <div class="chat-room-head">
+                        <h3>Chat Room: Support</h3>
+                        {#<form action="#" class="pull-right position">
+                            <input type="text" placeholder="Search" class="form-control search-btn ">
+                        </form>#}
+                    </div>
+                    <table class="table">
+                        <div class="group-rom">
+                            <div class="first-part odd" style="color: crimson;"><b>Contenu de votre réclamation : </b> </div>
+                            <div class="second-part" style="color: crimson;" > <b>{{ reclamation.contenu }}</b></div>
+                            <div class="third-part" style="color: crimson;"><b>{{ reclamation.date|date }}</b></div>
+                        </div>
+                        <div class="col-md-12">
+                            <h1>
+                                <p>VOS QUESTION!:</p>
+                                <hr>
+                            </h1>
+                        </div>
+                        <div class="group-rom">
+                            {% for q in q %}
+                            <div class="first-part odd" style="color: black"><b>Vos Question : </b></div>
+                            <div class="second-part" style="color: black"><b> {{ q.contenu  }} </b></div>
+                            <div class="third-part" style="color: black"><b>{{ q.date|date }}</b></div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-12">
+                            <h1>
+                                <p>REPONSE!:</p>
+                                <hr>
+                            </h1>
+                        </div>
+                        <div class="group-rom">
+                            {% for r in r %}
+                            {# <div class="first-part odd">Responsable :   {{ reclamation.idresponsable.prenom }} {{ reclamation.idresponsable.nom }}</div>#}
+                            <div class="first-part odd" style="color: black"><b>REPONSE!:</b> </div>
+                            <div class="second-part" style="color: black;">
+                                <b>
+                                    {% if rep.contenu == "false" %}
+                                        En cours d'execution
+                                    {% else %}
+                                        {{ r.contenu  }}
+                                    {% endif %}
+                                </b>
+                            </div>
+                            <div class="third-part" style="color: black;"><b>{{ r.date|date }}</b></div>
+                            {% endfor %}
+                        </div>
+                        <div >
+                            {{ form_start(form) }}
+                            <div class="col-xs-8">
+                                <i class="fa fa-comments" aria-hidden="true"  ></i>
+                                <a > Your message : <textarea style="width: 500px;" class=" border-color-4"{{ form_widget(form.contenu) }}</textarea></a>
+                            </div>
+                            <button class="btn btn-theme" value="Send"> Send</button>
+                            {{ form_end(form) }}
+                        </div>
+                    </table>
+
+                </aside>
+                <aside class="right-side">
+                    <div class="user-head">
+                        <h4 class="pull-left" style="color: black;"><b>{{ client.nom }} {{ client.prenom }}</b></h4>
+                    </div>
+                    <div class="invite-row">
+
+                        <div class="btn btn-secondary"><a href="{{ path('vente_all') }}" >MES RECLAMATION</a></div>
+                        <div class="btn btn-secondary"><a style="color: white" href="{{ path('vente_forum') }}" >FORUM</a></div>
+                        <div class="btn btn-secondary"><a style="color: white" href="{{ path('vente_homepage') }}" >PASSER UNE RECLAMATION</a></div>
+                    </div>
+
+                    <ul class="chat-available-user">
+
+                    </ul>
+                </aside>
+            </div>
+            <!-- page end-->
+        </section>
+        <!-- /wrapper -->
+    </section>
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+
+    </body></html>
+{% endblock %}
+{% block footer %}
+    <footer class="site-footer ">
+        <div class="text-center" >
+            <div class="footer_logo"><a href="index.html">Sublime.</a></div>
+            <div class="copyright ml-auto mr-auto">
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                Outsiders</div>
+            <a href="index.html#" class="go-top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+        </div>
+    </footer>
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

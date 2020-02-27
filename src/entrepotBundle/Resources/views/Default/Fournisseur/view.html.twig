@@ -1,0 +1,113 @@
+{% extends 'baseback.html.twig' %}
+{% block content %}
+    <script>
+        $('#okbtn').click(function() {
+            msg({
+                title:"Title goes here",
+                content:"Content goes here",
+                type:"Type goes here"
+            });
+        });
+    </script>
+    <section style="background: #EAEAEA" id="main-content">
+        <section class="wrapper">
+
+            <script src="{{ asset('js2/jquery.min.js') }}"></script>
+
+            <div style="width:90%;margin-left:5%;margin-bottom: 23%" class="row mb">
+                <!-- page start-->
+                <div style="background: #4ecdc4" class="content-panel">
+                    <h3><i class="fa fa-angle-right"></i> Liste de Fournisseurs </h3>
+                    <div class="adv-table">
+                        <div style="color:black" class="form-group">
+                            <label style="color:black" >Rechercher: </label>
+                            <th> <input type="text" id="search" placeholder="Search  ..."></th>
+                            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="tableac">
+
+                                <thead>
+
+                                <th class="column1"> id </th>
+                                <th class="column2">Description</th>
+                                <th class="column3">Image</th>
+                                <th class="column4">Nom</th>
+                                <th class="column5">Prenom</th>
+                                <th class="column6">Numero tel</th>
+                                <th class="column7">Matricule Fiscale</th>
+                                <th class="column8">Adresse email</th>
+                                </thead>
+                                <tbody>
+                                {% for c in Fournisseur  %}
+                                <tr>
+                                    <td> {{ c.Id  }} </td>
+                                    <td> {{ c.description  }} </td>
+                                    <td> {{ c.image }} </td>
+                                    <td> {{ c.nom}} </td>
+                                    <td> {{ c.prenom  }}> </td>
+                                    <td> {{ c.numerotel }}  </td>
+                                    <td> {{ c.matriculefiscale }}  </td>
+                                    <td> {{ c.email }}  </td>
+                                    <td>
+                                        <div class="compose-btn">
+                                            <ul>
+                                                <li>
+                                                    <button class="btn btn-theme02" style="height:30px;"><i class="fa fa-angle-right"></i> <a href="{{ path('fournisseur_supprimer', {'id':c.id }) }}">Supprimer</a></button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="compose-btn">
+                                            <ul>
+                                                <li>
+                                                    <button class="btn btn-theme02" style="height:30px;" ><i class="fa fa-angle-right"></i> <a  href="{{ path('fournisseur_update', {"id":c.id }) }}">Modifier</a></button>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="compose-btn">
+                                            <ul>
+                                                <li>
+                                                    <button class="btn btn-theme02" style="height:30px;" ><i class="fa fa-angle-right"></i> <a  href="{{ path('calcule', {"id":c.id }) }}">calcule</a></button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                </tbody>
+                            </table>
+                            </table>
+                            <ul>
+                                <li>
+                                    <button class="btn btn-round btn-success"><i class="fa fa-check"></i><a href="{{ path('fournisseur_Ajout') }}">Create a new Fournisseur </a></i></button>
+                                </li>
+                            </ul>
+        </section>
+    </section>
+    <script>
+
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,115 @@
+
+
+{# <table border="1">
+  <tr>
+      <td>id </td>
+      <td>date</td>
+      <td>id client </td>
+      <td>total</td>
+      <td>Action</td>
+  </tr>
+
+
+      <tr>
+          <td >{{ commande.id }}</td>
+          <td> {{ commande.date|date }} </td>
+          <td> {{ commande.idclient }} </td>
+          <td> {{ commande.total }} </td>
+
+          <td>  <a href="{{ path('affiche') }}">retour</a>
+          <a href="{{ path('valide',{'id':commande.id })}}" >valide</a></td>
+
+
+      </tr>
+
+</table>#}
+{% extends 'base.html.twig' %}
+{% block content %}
+<center>
+  <section class="wrapper" style="height: 1000px;width: 1000px;top: 120px">
+      <div class="col-lg-12 mt">
+          <div class="row content-panel">
+              <div class="col-lg-10 col-lg-offset-1">
+                  <div class="invoice-body">
+                      <!-- /pull-left -->
+                      <div class="pull-right" style="color: black;">
+                          <h2>Commande</h2>
+                          <h2>{{ commande.etat }}</h2>
+                      </div>
+                      <!-- /pull-right -->
+                      <div class="clearfix"></div>
+
+                      <div class="row">
+                          <div class="col-md-9">
+                              <h4>{{commande.idclient.nom}}  {{ commande.idclient.prenom }}</h4>
+                              <address>
+                                  <strong>{{ commande.idclient.adresse }}</strong><br>
+                                  <abbr title="Phone">P:</abbr> (+216) {{ commande.idclient.numtel }}
+                              </address>
+                          </div>
+                          <!-- /col-md-9 -->
+                          <div class="col-md-3" style="color: black;">
+                              <div>
+                                  <div class="pull-left"> N° de commande : </div>
+                                  <div class="pull-right"> {{ commande.id }} </div>
+                                  <div class="clearfix"></div>
+                              </div>
+                              <div>
+                                  <!-- /col-md-3 -->
+                                  <div class="pull-left"> Date de la commande : </div>
+                                  <div class="pull-right"> {{ commande.date | date("m/d/Y") }} </div>
+                                  <div class="clearfix"></div>
+                              </div>
+                          </div>
+                          <!-- /invoice-body -->
+                      </div>
+                      <!-- /col-lg-10 -->
+                      <table class="table">
+                          <thead>
+                          <tr>
+                              <th style="width:60px" class="text-center">Quantité</th>
+                              <th class="text-left">DESCRIPTION</th>
+
+                          </tr>
+                          </thead>
+                          <tbody>
+                       {% for lignevente in ligneventes %}
+                              <tr>
+                                  <td class="text-center">{{ lignevente.qt }}</td>
+                                  <td>{{ lignevente.idproduit.lib }}</td>
+
+                              </tr>
+                          {% endfor %}
+                                <tr>
+                                    <td colspan="2" rowspan="4">
+                                        <h4>Termes et Conditions</h4>
+                                        <p>Nous vous remerçions de nous avoir choisis.Le délais maximum d'un paiement est de 21jours, au delà de ce délais nous nous trouvons navré d'entamer les procédures judiciaires nécessaires.</p>
+                                    <td class="text-right"><strong>SousTotal</strong></td>
+                                    <td class="text-right">${{ commande.total }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right no-border"><strong>Frais de livraison</strong></td>
+                                    <td class="text-right">$6.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right no-border">
+                                        <div class="well well-small green"><strong>Total</strong></div>
+                                    </td>
+                                    <td class="text-right"><strong>${{ commande.total + 6 }}</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                  <td>  <a href="{{ path('neji_homepage',{ 'id': livreur.id })}}" class="btn btn-danger">retour</a>
+                      <a href="{{ path('generate_pdflivreur',{ 'id': commande.id }) }}" class="btn btn-primary">generate pdf </a>
+                      </td>
+                        <!--/col-lg-12 mt -->
+              </div>
+          </div>
+      </div>
+        </section>
+
+    </center>
+{% endblock %}
+

@@ -40,7 +40,7 @@
                                                     <li><a href="#">Categories</a></li>
                                                     <li><a href="{{ path('produit_select') }}">Produits</a></li>
                                                     <li><a href="{{ path('commande_select') }}">Commandes</a></li>
-                                                    <li><a href="#">Reclamations</a></li>
+                                                    <li><a href="{{ path('vente_all') }}">Reclamations</a></li>
                                                     <li><a href="{{ path('panier_select') }}">Panier</a></li>
 
                                                 </ul>
@@ -57,11 +57,11 @@
                                                 </ul>
                                             </li>
                                             <li><a href="{{ path('produit_select') }}">Produits</a></li>
-                                            <li><a href="{{ path('commande_select') }}">Commandes</a></li>
-                                            <li><a href="#">Reclamations</a></li>
-                                            <li><a href="{{ path('panier_select') }}">Panier</a></li>
                                             <li><a href="{{ path('appel_offre') }}">Appel d'offre</a></li>
                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                <li><a href="{{ path('panier_select') }}">Panier</a></li>
+                                                <li><a href="{{ path('commande_select') }}">Commandes</a></li>
+                                                <li><a href="{{ path('vente_all') }}">Reclamations</a></li>
                                                 <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
                                             {% else %}
                                                 <li><a class="logout" href="{{ path('fos_user_registration_register_client') }}">S'inscrire</a></li>
@@ -81,7 +81,7 @@
 
         {% endblock %}
         {% block footer %}
-            <footer class="site-footer">
+            <footer class="site-footer" style="position:absolute; bottom: -200%; left: 0; width: 100%;">
                 <div class="text-center">
                     <div class="footer_logo"><a href="index.html">Sublime.</a></div>
                     <div class="copyright ml-auto mr-auto">

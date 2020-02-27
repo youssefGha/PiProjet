@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+<!---sdsd--- Include the above in your HEAD tag ---------->
+<style>
+    #Forum {
+        max-width: 1100px;
+        width: calc(100% - 164px);
+        background-color: var(--white);
+        border-radius: 0;
+        border: 1px solid var(--black-100);
+        border-top-width: 0;
+        border-bottom-width: 0;
+        border-left-width: 1px;
+        border-right-width: 0;
+        padding: 24px;
+        box-sizing: border-box;
+    }
+    @import url(http://fonts.googleapis.com/css?family=Josefin+Sans);
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+
+.raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+.josefin {
+   font-family: 'Josefin Sans', sans-serif;
+   text-transform:uppercase;
+}
+
+.border {
+   border:3px solid #333;
+   padding:10px;
+}
+
+    div.resolved {
+        background-color: #e5f0cb;
+        height: 40px;
+        line-height: 40px;
+        color: #3b8416;
+        box-shadow: 0 1px 1px #e5e5e5;
+        background-clip: padding-box;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        padding-left: 20px;
+    }
+
+</style>
+<div id="Forum" class="snippet-hidden" style="padding-top: 20rem">
+
+    <div class="grid fw-wrap pb8 mb16 bb bc-black-2">
+        <a href="#message-84260140" class="date">{{ question.date|date }}</a><br>
+
+    </div>
+
+    <div class="" style="background: #e5f0cb; box-shadow: 0 1px 1px #e5e5e5; border-radius: 10px;width: 200rem; display: flex; justify-content: flex-start; padding: 1rem" >
+        <p style="width: 70%">{{ question.id }} </p>
+        <div style="width: 30%; display: flex; justify-content: flex-end">
+            <div class="btn btn-secondary" style="height: 35px">
+                <a style="color: white" href="{{ path('vente_homepage') }}" >PASSER UNE RECLAMATION</a>
+            </div>
+            <div class="btn btn-secondary" style="height: 35px">
+                <a style="color: white" href="{{ path('vente_forum') }}" >Forum</a>
+            </div>
+              <div class="btn btn-secondary">
+              <a style="color: white" href="{{ path('vente_all') }}" >MES RECLAMATION</a>
+              </div>
+        </div>
+    </div>
+
+    <div id="mainbar" role="main" aria-label="question and answers">
+        <div class="question" data-questionid="280478" id="question">
+                <div class="postcell post-layout--right">
+{#
+                    <div class="post-text" itemprop="text">
+
+                        <blockquote>
+                            <p>{{ val.contenu }}</p>
+                        </blockquote>
+                        <p>By @youssef</p>
+                    </div>
+                    <div class="post-text" itemprop="text">
+                        <blockquote>
+                            <p>{{ val.contenu }}</p>
+                        </blockquote>
+                        <p>By @ </p>
+                    </div>#}
+                    {% for p in val  %}
+                    <div class="post-text" itemprop="text">
+
+                        <blockquote >
+                            <p>
+                                <h4>{{ p.contenu }}</h4>
+                            <hr style="width: 20rem;">
+                            <h6>{{ p.date|date }}</h6>
+                                </p>
+
+                        </blockquote>
+                        <p>By @{{ p.idclient.nom }}{{ p.idclient.prenom }}</p>
+
+                    </div>
+                    {% endfor %}
+                    {{ form_start(form) }}
+
+                    {{ form_widget(form.contenu) }}
+                    <input type="submit" value="Submit" style="color: black;" />
+                    {{ form_end(form) }}
+                </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+  {% block footer %}
+      <footer class="site-footer" style="margin-top: 51rem;width: 200rem;">
+          <div class="text-center" >
+              <div class="footer_logo"><a href="index.html">Sublime.</a></div>
+              <div class="copyright ml-auto mr-auto">
+                  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                  Outsiders</div>
+              <a href="index.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+  {% endblock %}

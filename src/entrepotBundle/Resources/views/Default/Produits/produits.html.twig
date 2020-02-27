@@ -5,26 +5,49 @@
             <div class="home_background" ><img style="height: 100%;width: 100%;margin-top: 150px" src="{{ asset('front/images/categories.png') }}"/></div>
         </div>
     </div>
-    <div class="row">
-        <div class="col"  style="background: #FFFFFF">
-            <div class="product_grid" style="margin-left:400px;background: #FFFFFF">
-                {%  for produit in produits %}
-                <div class="product">
-                    <div class="product_image"><img src="{{ asset('front/images/'~produit.image) }} "style="height: 400px;width: 350px" alt=""></div>
-                    <div class="product_content">
-                        <div class="product_title"><a href="#">{{ produit.lib }}</a></div>
-                        <a href="{{ path('panier_add',{'id':produit.id })}}" class="btn btn-success" style="float : right;margin-right: 55px">
-                            Ajouter au panier
-                        </a>
-                        <div class="product_price" >${{ produit.prixvente }}
+    <div class="row" style="margin: 0; padding-left: 40px">
+        <div class="col-md-3" >
+            {{ form_start(form) }}
+            {{ form_widget(form.q,{'attr':{'class':'form-control'}}) }}
+            <h4 style="color:#00c5de">Catégories</h4>
+            {{ form_widget(form.categories,{'attr':{'class':'form-control','style':'margin-top:10px'}}) }}
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 style="color:#00c5de">Prix Max</h4>
+                    {{ form_widget(form.max,{'attr':{'class':'form-control','style':'margin-top:10px'}}) }}
+                </div>
+                <div class="col-md-6">
+                    <h4 style="color:#00c5de">Prix Min</h4>
+                    {{ form_widget(form.min,{'attr':{'class':'form-control','style':'margin-top:10px'}}) }}
+                </div>
 
+            </div>
+            <button type="submit" class="btn btn-primary w-100" style="margin-top: 10px">Filtrer</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-9"  >
+                {%  for produit in produits %}
+                    <div class="col-md-3" style="box-shadow: 0 2px 8px 0 #00000047; border-radius: 5px; padding: 0px; margin: 1rem; background-color: white; width: 23%">
+                        <div class="productContainer">
+                            <img class="card-img-top" src="{{ asset('uploads/images/') }}{{ produit.nomImage  }}" alt="Card image cap" style="width: 100%; height: 300px; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                            <div class="overlayAdd">
+                                <div class="text">
+                                    <a href="{{ path('panier_add',{'id':produit.id })}}" >
+                                    <i class="fa fa-cart-plus fa-2x" aria-hidden="true" style="margin-bottom: 1rem"></i>
+                                        <br/>
+                                     Ajouter au panier</a>
+                                </div>
+                            </div>
                         </div>
 
+                        <div class="p-3" style="padding: 1rem">
+                            <h4><a href="#">{{ produit.lib }}</a></h4>
+                            <h6>{{ produit.description }}</h6>
+                            <div class="product_price" >${{ produit.prixvente }}</div>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
-            </div>
-
         </div>
     </div>
+
 {% endblock %}

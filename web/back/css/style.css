@@ -16,7 +16,7 @@ Website: http://Alvarez.is/
 
 /* BASIC THEME CONFIGURATION */
 body {
-    color: #FFFFFF;
+    color: black;
 	background: #FFFFFF;
     font-family: 'Ruda', sans-serif;
     padding: 0px !important;
@@ -255,24 +255,7 @@ ul.top-menu > li > .logout {
 }
 
 /*LEFT NAVIGATION ICON*/
-.dcjq-icon {
-    height:17px;
-    width:17px;
-    display:inline-block;
-    background: url("../img/nav-expand.png") no-repeat top;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    position:absolute;
-    right:10px;
-    top:15px;
-}
-.active .dcjq-icon {
-    background: url("../img/nav-expand.png") no-repeat bottom;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-}
+
 /*---*/
 
 .nav-collapse.collapse {
@@ -512,7 +495,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     /* Safari and Chrome */
     .dropdown-menu.extended  {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
-    };
+    }
     }
 
 .dropdown-menu.extended li p {
@@ -697,7 +680,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .log-arrow-up {
-    background: url("../img/arrow-up.png") no-repeat;
+
     width: 20px;
     height: 11px;
     position: absolute;
@@ -1280,23 +1263,7 @@ PANELS CONFIGURATIONS
 	border-radius: 100%;
 }
 
-/* Soptify Panel */
-#spotify {
-	background: url(../img/lorde.jpg) no-repeat center top;
-	margin-top: -15px;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 220px;
-	width: 100%;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+
 #spotify .btn-clear-g {
 	top: 15%;
 	right: 10px;
@@ -1328,7 +1295,6 @@ PANELS CONFIGURATIONS
 #blog-bg {
 	background: url(../img/blog-bg.jpg) no-repeat center top;
 	margin-top: -15px;
-	background-attachment: relative;
 	background-position: center center;
 	min-height: 150px;
 	width: 100%;
@@ -1624,8 +1590,6 @@ PANELS CONFIGURATIONS
 
 /* Grid Showcase*/
 
-	margin-bottom: 15px;
-}
 
 .show-grid [class^=col-] {
 	padding-top: 10px;
@@ -2013,20 +1977,32 @@ ul li {
 	position: relative;
 	background-color: #f2f2f2;
 	background-clip: padding-box;
-	border: 1px solid #999;
 	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 5px;
 }
 
 
 /* PROFILE PAGE CONF */
+.profile-link{
+    color: #6c757d;
+}
+
+.profile-linkContainer:hover{
+    background: rgb(248, 249, 250);
+    color: rgb(63, 106, 216);
+}
+
+
+.profile-link:hover{
+    color: rgb(63, 106, 216);
+}
+
 .profile-pic img {
-	width: 130px;
-	height: 130px;
-	border-radius: 50%;
-	-webkit-border-radius: 50%;
-	border: 10px solid #f1f2f7;
-	margin-top: 20px;
+	width: 100px;
+    height: 100px;
+	border-radius: 1rem;
+	-webkit-border-radius: 1rem;
+    border: #fff solid 3px;
 }
 
 .profile-text h6 {
@@ -3165,8 +3141,8 @@ ul.chat-available-user li a:hover {
     /* Safari and Chrome */
     .panel-footer.revenue-foot {
         margin-bottom: -4px;
-    };
     }
+}
 
 
 .panel-footer.revenue-foot ul  {
@@ -3483,4 +3459,68 @@ ul.chat-available-user li a:hover {
 
 #copyrights a {
   color: #fff;
+}
+
+
+.productContainer {
+    position: relative;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    height: 450px;
+}
+
+.overlayRemove {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: red;
+    border-radius: 5px;
+}
+
+.overlayAdd {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: blue;
+    border-radius: 5px;
+}
+
+.productContainer:hover .overlayRemove {
+    opacity: 0.8;
+}
+
+.productContainer:hover .overlayAdd {
+    opacity: 0.8;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }

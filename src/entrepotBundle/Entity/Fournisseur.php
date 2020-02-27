@@ -5,6 +5,7 @@ namespace entrepotBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 Use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  *
@@ -18,11 +19,6 @@ class Fournisseur
      *@ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $matriculefiscal;
     /**
      * @ORM\Column(type="string")
      */
@@ -31,6 +27,53 @@ class Fournisseur
      * @ORM\Column(type="string")
      */
     private $image;
+
+    /**
+    * @ORM\Column(type="string", nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "min 3 characteres",
+     *      maxMessage = "max 10 characteres"
+     * )
+     */
+    private $nom;
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "min 3 characteres",
+     *      maxMessage = "max 10 characteres"
+     * )
+     */
+    private $prenom;
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 8,
+     *      minMessage = "min 8 chiffres",
+     *      maxMessage = "max 8 chiffres"
+     * )
+     *
+     */
+    private $numerotel;
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "min 3 characteres",
+     *      maxMessage = "max 10 characteres"
+     * )
+     */
+    private $matriculefiscale;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $email;
     /**
      * @ORM\ManyToMany(targetEntity="Produit", mappedBy="fournisseurs",inversedBy="produits")
      */
@@ -40,6 +83,54 @@ class Fournisseur
      * @ORM\JoinColumn(name="iduser",referencedColumnName="id")
      */
     private  $iduser;
+    /**
+     * @return mixed
+     */
+    public function getNumerotel()
+    {
+        return $this->numerotel;
+    }
+
+    /**
+     * @param mixed $numerotel
+     */
+    public function setNumerotel($numerotel)
+    {
+        $this->numerotel = $numerotel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMatriculefiscale()
+    {
+        return $this->matriculefiscale;
+    }
+
+    /**
+     * @param mixed $matriculefiscale
+     */
+    public function setMatriculefiscale($matriculefiscale)
+    {
+        $this->matriculefiscale = $matriculefiscale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
 
     /**
      * @return mixed
@@ -47,8 +138,6 @@ class Fournisseur
     public function getIduser()
     {
         return $this->iduser;
-
-        
     }
 
     /**
@@ -162,22 +251,6 @@ class Fournisseur
     /**
      * @return mixed
      */
-    public function getMatriculefiscal()
-    {
-        return $this->matriculefiscal;
-    }
-
-    /**
-     * @param mixed $matriculefiscal
-     */
-    public function setMatriculefiscal($matriculefiscal)
-    {
-        $this->matriculefiscal = $matriculefiscal;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getDescription()
     {
         return $this->description;
@@ -208,7 +281,7 @@ class Fournisseur
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
     public function getProduits()
     {

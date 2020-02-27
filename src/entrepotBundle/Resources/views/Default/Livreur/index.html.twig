@@ -1,0 +1,256 @@
+{% extends 'baseback.html.twig' %}
+
+
+
+{% block content %}
+
+
+
+    <head>
+        <script src="{{ asset('http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') }}"></script>
+        <script src="{{ asset('blackknight467/StarRatingBundle/Resources/public/js/rating.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/jquery-2.2.3.min.js') }}"></script>
+        <style>
+            .rating {
+                font-size:16px;
+            }
+
+            .rating-well {
+                display: inline-block;
+                direction: rtl;
+            }
+
+            .rating input.rating {
+                display: none;
+            }
+
+            .rating div.star {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star:hover {
+                cursor:pointer;
+            }
+
+            .rating div.star:before {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.star:hover:before,.rating div.star:hover~div.star:before {
+                content:"\f005";
+                color:#e3cf7a;
+            }
+
+            .rating div.star-full {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-full:before  {
+                content:"\f005";
+                padding-right:5px;
+                color:#e3cf7a;
+            }
+
+            .rating div.star-empty {
+                font-family:FontAwesome;
+                font-weight:normal;
+                font-style:normal;
+                font-size: 25px;
+                display:inline-block;
+                position: relative;
+            }
+
+            .rating div.star-empty:before  {
+                content:"\f006";
+                padding-right:5px;
+                color:#999;
+            }
+
+            .rating div.fa-norm {
+                font-size: 1em;
+            }
+
+            .rating div.fa-lg {
+                font-size: 1.33333333em;
+                line-height: 0.75em;
+                vertical-align: -15%;
+            }
+
+            .rating div.fa-2x {
+                font-size: 2em;
+            }
+
+            .rating div.fa-3x {
+                font-size: 3em;
+            }
+
+            .rating div.fa-4x {
+                font-size: 4em;
+            }
+
+            .rating div.fa-5x {
+                font-size: 5em;
+            }
+        </style>
+        w        <script type="text/javascript">
+
+
+
+            $(function(){
+
+                $( '.rating' ).click(function() {
+                    alert(parseInt($(this).find('input').val()));
+                });
+
+
+                var labelWasClicked = function labelWasClicked(){
+
+                    var input = $(this).siblings().filter('input');
+                    if (input.attr('disabled')) {
+                        return;
+                    }
+                    input.val($(this).attr('data-value'));
+
+                }
+
+                var turnToStar = function turnToStar(){
+                    if ($(this).find('input').attr('disabled')) {
+                        return;
+                    }
+                    var labels = $(this).find('div');
+                    labels.removeClass();
+                    labels.addClass('star');
+                }
+
+                var turnStarBack = function turnStarBack(){
+                    var rating = parseInt($(this).find('input').val());
+
+                    if (rating > 0) {
+                        var selectedStar = $(this).children().filter('#rating_star_'+rating)
+                        var prevLabels = $(selectedStar).nextAll();
+                        prevLabels.removeClass();
+                        prevLabels.addClass('star-full');
+                        selectedStar.removeClass();
+                        selectedStar.addClass('star-full');
+                    }
+                }
+
+                $('.star, .rating-well').click(labelWasClicked);
+                $('.rating-well').each(turnStarBack);
+                $('.rating-well').hover(turnToStar,turnStarBack);
+
+            });
+
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('blackknight467/StarRatingBundle/Resources/public/css/rating.css') }}" />
+
+
+    </head>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('back/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('back/css/main.css')}}">
+    <div class="container-fluid">
+        <div class="row" style="padding-left: 10%">
+            <div class="col-md-12" style="padding: 0">
+                <div class="col-md-12" style="background-color: white; margin-bottom: 2rem; padding: 1rem">
+                    <form class="form-inline active-purple-3 active-purple-4">
+
+                        <button type="submit" value="rechercher" class="btn" ><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                               aria-label="Search" id="search">
+                    </form>
+                    <div id="entitiesNav"></div>
+                    <div id="Nav"></div>
+                </div>
+
+
+
+                {% for livreur in livreurs %}
+
+                    <div class="col-md-4" style="width: 32%;
+             margin-left: 1rem;
+             margin-right: 1rem;
+             margin-bottom: 2rem;
+             box-shadow: 0 0.46875rem 2.1875rem rgba(63,106,216,0.03), 0 0.9375rem 1.40625rem rgba(63,106,216,0.03), 0 0.25rem 0.53125rem rgba(63,106,216,0.05), 0 0.125rem 0.1875rem rgba(63,106,216,0.03);
+             background-color: white;
+             border-radius: .25rem;
+             border: 1px solid rgba(26,54,126,0.125);
+             padding: 0px;
+            ">
+
+
+                        <div class="col-md-12" style="background-color: #2f323a; display: flex">
+                            <div class="profile-pic col-md-3">
+                                <img src="{{ asset('uploads/images/' ~livreur.imagev ) }}" class="img-circle" style="margin-top: 2rem; margin-bottom: 2rem;">
+                            </div>
+                            <div class="col-md" style="justify-content: center; display: flex; flex-direction: column">
+                                <h3 style="color: white; margin: 0px; margin-bottom: 1rem;">{{ livreur.nom }} {{ livreur.prenom }}</h3>
+                                <h6 style="color: white; margin: 0px; margin-bottom: 2rem;">{{ livreur.cin }}</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="padding: 0px;">
+                            <div class="right-divider hidden-sm hidden-xs">
+
+                                <div style="border: 1px solid rgba(0,0,0,0.125); padding: .75rem 1.25rem; display: block" class="col-md-12">
+
+                                    <div style="display: inline-flex; ">
+                                        <h4 style="margin-right: 1rem;">{{ livreur.rating|rating(5, "fa-lg") }} </h4>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="padding: 0px">
+                            <div class="col-md-6 text-center profile-linkContainer" style="border-right: #dee2e6 solid 1px; padding: 30px 0px; display: flex; flex-direction: column">
+                                <a href="{{ path('livreur_show', { 'id': livreur.id }) }}" class="profile-link">
+                                    <i class="fa fa-id-card-o fa-3x" aria-hidden="true" style="margin-bottom: 1rem"></i>
+                                    <br>
+                                    Consulter le profil</a>
+                            </div>
+                            <div class="col-md-6 text-center profile-linkContainer" style="border-right: #dee2e6 solid 1px; padding: 30px 0px; display: flex; flex-direction: column">
+                                <a href="{{ path('listecommandeadmin', { 'id': livreur.id }) }}" class="profile-link">
+                                    <i class="fa fa-search fa-3x" aria-hidden="true" style="margin-bottom: 1rem"></i>
+                                    <br>
+                                    Consulter ses commandes</a>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12" style="padding: 0px">
+                            <div class="col-md-6 text-center profile-linkContainer" style="border-right: #dee2e6 solid 1px; border-top: #dee2e6 solid 1px; padding: 30px 0px; display: flex; flex-direction: column">
+                                <a href="{{ path("livreur_edit", {"id":livreur.id})}}" class="profile-link">
+                                    <i class="fa fa-pencil fa-3x" aria-hidden="true" style="margin-bottom: 1rem"></i>
+                                    <br>
+                                    Modifier</a>
+                            </div>
+                            <div class="col-md-6 text-center profile-linkContainer" style="border-right: #dee2e6 solid 1px; border-top: #dee2e6 solid 1px; padding: 30px 0px; display: flex; flex-direction: column">
+                                <a href="{{ path("test_car_delete", {"qdt":livreur.id}) }}" class="profile-link">
+                                    <i class="fa fa-trash-o fa-3x" aria-hidden="true" style="margin-bottom: 1rem"></i>
+                                    <br>
+                                    Supprimer</a>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

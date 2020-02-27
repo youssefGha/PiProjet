@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <section style="background: #EAEAEA" id="main-content">
+    <section style="background: #EAEAEA" class="wrapper">
+        <section  class="row mt">
+
+
+            <section style="background: #EAEAEA" class="panel">
+
+                <div class="chat-room-head">
+                    <h3>Ajouter  Demande</h3>
+                    <form action="#" class="pull-right position">
+
+                    </form>
+                </div>
+
+                <center>
+
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="container">
+                        {{ form_start(form) }}
+                    </div>
+                    <div style="color:black" class="form-group">
+
+
+                        <label style="color:black" >Demande: </label>
+                        {{ form_widget(form.description) }}
+
+
+                        <div><input class="btn btn-info" type="submit" value="Envoyer" /></div>
+
+                    </div>
+                    {{ form_end(form) }}
+                    </div>
+
+                </center>
+            </section>
+        </section>
+    </section>
+{% endblock %}

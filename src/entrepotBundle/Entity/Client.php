@@ -26,6 +26,14 @@ class Client
      */
     private $numtel;
     /**
+     * @ORM\Column(type="string")
+     */
+    private $nom;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $prenom;
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(name="iduser",referencedColumnName="id")
      */

@@ -1,0 +1,63 @@
+
+
+livreur_show:
+    path:     /{id}/show
+    defaults: { _controller: entrepotBundle:Livreur:show }
+    methods:  GET
+
+livreur_new:
+    path:     /new
+    defaults: { _controller: entrepotBundle:Livreur:new }
+    methods:  [GET, POST]
+
+livreur_edit:
+    path:     /edit/{id}
+    defaults: { _controller: entrepotBundle:Livreur:edit }
+    methods:  [GET, POST]
+
+livreur_editfront:
+    path:     /editfront/{id}
+    defaults: { _controller: entrepotBundle:Livreur:editfront }
+    methods:  [GET, POST]
+livreur_editfrontlivreur:
+    path:     /editfrontlivreur/{id}
+    defaults: { _controller: entrepotBundle:Livreur:editfrontlivreur }
+    methods:  [GET, POST]
+
+test_car_delete:
+    path:     /delete/{qdt}
+    defaults: { _controller: entrepotBundle:Livreur:delete }
+neji_homepage:
+    path:     /home/{id}
+    defaults: { _controller: entrepotBundle:Livreurcommande:index }
+
+affiche:
+    path:     /{id}/affiche
+    defaults: { _controller: entrepotBundle:Livreurcommande:affichecommandenonlivree }
+consulter:
+    path: /{id}/{li}/consulter
+    defaults: { _controller: entrepotBundle:Livreurcommande:commandenonlivreedetaille }
+affichel:
+    path:     /{id}/affichel
+    defaults: { _controller: entrepotBundle:Livreurcommande:affichelistevalide }
+valide:
+    path:     /valide/{id}/{li}
+    defaults: { _controller: entrepotBundle:Livreurcommande:valide }
+livree:
+    path:     /livree/{li}/{id}
+    defaults: { _controller: entrepotBundle:Livreurcommande:livree }
+affichet:
+    path:     /{id}/affichet
+    defaults: { _controller: entrepotBundle:Livreurcommande:affichet }
+consultervalide:
+    path:     consultert/{li}/{id}
+    defaults: { _controller: entrepotBundle:Livreurcommande:commandenonvalidedetaille }
+consulterfinale:
+    path:     /{id}/{li}consulterfinale
+    defaults: { _controller: entrepotBundle:Livreurcommande:affichecfinale }
+generate_pdflivreur:
+    path:     /generate/{id}
+    defaults: { _controller: entrepotBundle:Livreurcommande:generatepdf }
+searchlivreur:
+    path:     /searchlivreur
+    defaults: { _controller: entrepotBundle:Livreur:searchlivreur }

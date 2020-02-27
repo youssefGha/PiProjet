@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <center>
+    <section id="main-content">
+
+        <section class="wrapper">
+            <h3><i class="fa fa-angle-right"></i> PRODUCTS </h3>
+
+
+
+                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                            <br><br><br><br><br><br><br>
+                            <thead>
+
+
+                            <th>LIBELLE</th>
+                            <th class="hidden-phone">DESCRIPTION</th>
+                            <th class="hidden-phone">IMAGE</th>
+
+
+                            </thead>
+                            </center>
+                            <center>
+                                <tbody>
+                                {% for categorie in categories %}
+                                <tr>
+
+
+                                    <td>{{ categorie.lib }}</td>
+
+                                    <td>{{ categorie.description }}</td>
+
+
+
+
+                                    <td><img src="{{ asset('images/uploads/') }}{{ categorie.nomImage }}" style="width: 150px; height: 150px"></td>
+
+
+
+
+                                    <td>
+
+
+
+
+
+
+
+
+
+                    {% endfor %}
+                    </tbody>
+                    </table>
+
+                </div>
+                </table>
+
+
+        </section>
+    </section>
+
+
+
+
+                            </center>
+{% endblock %}

@@ -1,7 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23d3fb10-e4c7-452b-8c85-673ece249036" name="Default Changelist" comment="" />
+    <list default="true" id="23d3fb10-e4c7-452b-8c85-673ece249036" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/categorie/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/categorie/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/categorie/indexfront.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/categorie/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/categorie/show.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/default/Commandes/detail_commande.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/default/Commandes/detail_responsable_commande.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/default/affichecfinale.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/produit/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/produit/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/produit/indexF.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/produit/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/produit/show.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/CategorieController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/LivreurController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/LivreurcommandeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/StatController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/StatistiqueController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/VenteController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Data/SearchData.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Form/CategorieType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Form/CommandeventeType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Form/CommandeventeeType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Form/ProduitType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Form/SearchForm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Form/livreurType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Form/livreureditType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Repository/CategorieRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Repository/FournisseurRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Repository/LivreurRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Repository/ProduitRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/config/routing/livreur.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreur/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreur/editfront.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreur/editfrontlivreur.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreur/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreur/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreur/registerclient.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreur/registerfournisseur.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreur/show.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/affiche.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/affichec.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/affichecfinale.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/affichecl.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/affichel.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/affichet.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/commande.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/consulteradmin.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Livreurcommandes/listecommandeadmin.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Produits/updatep.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Statistiques/statistique.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Stat/Stat.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/untitled4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/untitled4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content_admin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content_admin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content_fournisseur.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content_fournisseur.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content_livreur.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content_livreur.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/baseback.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/baseback.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Controller/CommandeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/CommandeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/DefaultController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Controller/FournisseurController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/FournisseurController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Controller/PanierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/PanierController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Controller/ProduitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Controller/ProduitController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Entity/Categorie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Entity/Categorie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Entity/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Entity/Client.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Entity/Commandevente.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Entity/Commandevente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Entity/Fournisseur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Entity/Fournisseur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Entity/Livreur.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Entity/Livreur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Entity/Produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Entity/Produit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Entity/Reclamation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Entity/Reclamation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Entity/Reponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Entity/Reponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Commandes/commande.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Commandes/commande.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Commandes/commande_responsable.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Commandes/commande_responsable.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Commandes/detail_commande.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Commandes/detail_commande.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Homes/fournisseur_home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Homes/fournisseur_home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Panier/panier.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Panier/panier.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Panier/panier_fournisseur.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Panier/panier_fournisseur.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Produits/produits.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Produits/produits.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Produits/produits_fournisseur.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/Produits/produits_fournisseur.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/fournisseurs.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/fournisseurs.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/offre.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/entrepotBundle/Resources/views/Default/offre.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/back/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/back/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/front/styles/main_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/front/styles/main_styles.css" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +108,9 @@
     <execution>
       <executable path="composer" />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -56,29 +154,42 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-apcu" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
       <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/mrad/notifications-bundle" />
+      <path value="$PROJECT_DIR$/vendor/pusher/pusher-php-server" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
+      <path value="$PROJECT_DIR$/vendor/blackknight467/star-rating-bundle" />
+      <path value="$PROJECT_DIR$/vendor/nomaya/social-bundle" />
+      <path value="$PROJECT_DIR$/vendor/cmen/google-charts-bundle" />
+      <path value="$PROJECT_DIR$/vendor/messagebird/php-rest-api" />
     </include_path>
   </component>
   <component name="ProjectId" id="1XU3pTTtUqshR8W6jBcFqSm1IQt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Resources/FOSUserBundle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/entrepotBundle/Form" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.zend.framework.tool" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\untitled4\app\Resources\FOSUserBundle" />
-      <recent name="C:\wamp64\www\untitled4\app\Resources\FOSUserBundle\views" />
-      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Register" />
-      <recent name="C:\wamp64\www\untitled4\vendor\friendsofsymfony\user-bundle\Resources\views\Registration" />
-      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default" />
+      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Form" />
+      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Vente\Front" />
+      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Livreur" />
+      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Livreurcommandes" />
+      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Repository" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Vente\Front" />
+      <recent name="C:\wamp64\www\untitled4\app\Resources\views" />
+      <recent name="C:\wamp64\www\untitled4\app\Resources\views\default" />
       <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default" />
       <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Produits" />
-      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Panier" />
-      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Commandes" />
-      <recent name="C:\wamp64\www\untitled4\src\entrepotBundle\Resources\views\Default\Homes" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -86,8 +197,12 @@
       <command value="c dump-autoload" />
       <command value="s generate:bundle" />
       <command value="s doctrine:schema:create" />
-      <command value="s doctrine:schema:update --force" />
       <command value="s cache:clear" />
+      <command value="s doctrine:schema:update --force --complete" />
+      <command value="s doctrine:generate:form" />
+      <command value="s doctrine:generate:form entrepotBundle:SearchData" />
+      <command value="s doctrine:generate:form entrepotBundle:Client" />
+      <command value="s doctrine:schema:update --force" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -102,6 +217,12 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -113,11 +234,29 @@
       <option name="presentableId" value="Default" />
       <updated>1581087028269</updated>
       <workItem from="1581087029484" duration="39271000" />
-      <workItem from="1581254161175" duration="73319000" />
+      <workItem from="1581254161175" duration="84047000" />
+      <workItem from="1581807091926" duration="70116000" />
+      <workItem from="1582544180489" duration="121320000" />
+      <workItem from="1582765228295" duration="239000" />
+      <workItem from="1582765929344" duration="31000" />
+      <workItem from="1582766012587" duration="1279000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

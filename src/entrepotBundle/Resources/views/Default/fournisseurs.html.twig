@@ -1,28 +1,80 @@
 {% extends 'baseback.html.twig' %}
 {% block content %}
-{% for fournisseur in fournisseurs %}
+    <div style="padding-top: 20px;margin-bottom: 612px">
+        <div class="row" style="padding-left:11%;margin-left: 0px; margin-right: 0px">
 
-    <div class="row content-panel" style="margin-bottom: 803px;width: 80%;margin-left:15%">
-        <div class="col-md-4 profile-text mt mb centered">
-            <div class="right-divider hidden-sm hidden-xs">
-                <h4>1922</h4>
-                <h6>Ventes</h6>
-                <h4>290</h4>
-                <h6>Produits disponibles</h6>
+        {% for fournisseur in fournisseurs  %}
+        <div class="col-md-4"
+             style="width: 32%;
+             margin-left: 1rem;
+             margin-right: 1rem;
+             margin-bottom: 2rem;
+             box-shadow: 0 0.46875rem 2.1875rem rgba(63,106,216,0.03), 0 0.9375rem 1.40625rem rgba(63,106,216,0.03), 0 0.25rem 0.53125rem rgba(63,106,216,0.05), 0 0.125rem 0.1875rem rgba(63,106,216,0.03);
+             background-color: white;
+             border-radius: .25rem;
+             border: 1px solid rgba(26,54,126,0.125);
+             padding: 0px;
+            ">
+            <div class="col-md-12" style="background-color: #2f323a; display: flex">
+                <div class="profile-pic col-md-3">
+                    <img src="{{ asset('back/img/'~fournisseur.image) }}" class="img-circle" style="margin-top: 2rem; margin-bottom: 2rem;">
+                </div>
+                <div class="col-md" style="justify-content: center; display: flex; flex-direction: column">
+                    <h3 style="color: white; margin: 0px; margin-bottom: 1rem;">{{ fournisseur.iduser.username }}</h3>
+                    <h6 style="color: white; margin: 0px; margin-bottom: 2rem;">{{ fournisseur.matriculefiscale }}</h6>
+                    <p style="color: white; margin: 0px"> {{ fournisseur.description }}</p>
+                </div>
+            </div>
+            <div class="col-md-12" style="padding: 0px;">
+                <div class="right-divider hidden-sm hidden-xs">
+
+                    <div style="border: 1px solid rgba(0,0,0,0.125); padding: .75rem 1.25rem; display: block" class="col-md-12">
+
+                        <div style="display: inline-flex; ">
+                            <h4 style="margin-right: 1rem;">{{ nbvente[fournisseur.id] }} Ventes pour un total de <h4 style="color: green">${{ total[fournisseur.id] }}</h4></h4>
+                        </div>
+                    </div>
+
+                    <div style="border: 1px solid rgba(0,0,0,0.125); padding: .75rem 1.25rem; display: block" class="col-md-12">
+
+                        <div style="display: inline-flex">
+                            <h4 style="margin-right: 1rem">{{ nbproduit[fournisseur.id] }} Produits disponibles <a href="{{ path('demandeaffiche',{'id':fournisseur.id }) }}"><button class="btn btn-theme">Demande</button></a></h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="padding: 0px">
+                <div class="col-md-6 text-center profile-linkContainer" style="border-right: #dee2e6 solid 1px; padding: 30px 0px; display: flex; flex-direction: column" >
+                    <a href="{{ path('bar')}}" class="profile-link">
+                    <i class="fa fa-envelope-o fa-3x" aria-hidden="true"  style="margin-bottom: 1rem"></i>
+                        <br/>
+                   Envoyer un SMS</a>
+                </div>
+                <div class="col-md-6 text-center profile-linkContainer" style="border-right: #dee2e6 solid 1px; padding: 30px 0px; display: flex; flex-direction: column" >
+                    <a href="{{ path('produit_responsable_select',{'id':fournisseur.id })}}" class="profile-link">
+                        <i class="fa fa-search fa-3x" aria-hidden="true"  style="margin-bottom: 1rem"></i>
+                        <br/>
+                        Consulter ses produits</a>
+                </div>
+            </div>
+            <div class="col-md-12" style="padding: 0px">
+                <div class="col-md-6 text-center profile-linkContainer" style="border-right: #dee2e6 solid 1px; border-top: #dee2e6 solid 1px;padding: 30px 0px; display: flex; flex-direction: column" >
+                    <a href="{{ path('fournisseur_update',{'id':fournisseur.id })}}" class="profile-link">
+                        <i class="fa fa-pencil fa-3x" aria-hidden="true" style="margin-bottom: 1rem"></i>
+                        <br/>
+                        Modifier</a>
+                </div>
+                <div class="col-md-6 text-center profile-linkContainer" style="border-right: #dee2e6 solid 1px;border-top: #dee2e6 solid 1px; padding: 30px 0px; display: flex; flex-direction: column" >
+                    <a href="{{ path('fournisseur_supprimer',{'id':fournisseur.id })}}" class="profile-link">
+                        <i class="fa fa-trash-o fa-3x" aria-hidden="true"  style="margin-bottom: 1rem"></i>
+                        <br/>
+                        Supprimer</a>
+                </div>
+
             </div>
         </div>
-        <div class="col-md-4 profile-text">
-            <h3>{{ fournisseur.iduser.username }}</h3>
-            <h6>{{ fournisseur.matriculefiscal }}</h6>
-            <p> {{ fournisseur.description }}</p>
-            <br>
-            <a href="{{ path('produit_responsable_select',{'id':fournisseur.id })}}"><button class="btn btn-theme"><i class="fa fa-envelope"></i> Consulter ses produits</button></a>
-        </div>
-        <div class="col-md-4 centered">
-            <div class="profile-pic">
-                <p><img src="{{ asset('back/img/'~fournisseur.image) }}" class="img-circle"></p>
-            </div>
+{% endfor %}
         </div>
     </div>
-{% endfor %}
 {% endblock %}

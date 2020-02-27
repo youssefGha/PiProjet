@@ -1,0 +1,62 @@
+{% extends 'baseback.html.twig' %}
+
+{% block content %}
+    <section id="main-content">
+        <section class="wrapper">
+            <h3><i class="fa fa-angle-right"></i> Modifier un Produit </h3>
+
+            <div class="row mb" style="padding: 2rem" >
+                <div class="col-md-12" style="padding: 2rem; background-color: white; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px">
+                <!-- page start-->
+
+                {{ form_start(edit_form) }}
+
+
+                    <div class="form-group">
+                            <label for="subject">LIBELLE: </label>
+                            {{ form_widget(edit_form.lib,{'attr':{'type':'text','class':'form-control','placeholder':'libelle'}}) }}
+                    </div>
+                    <div class="form-group">
+                            <label>PRIX VENTE : </label>
+
+                            {{ form_widget(edit_form.prixVente,{'attr':{'type':'','class':'form-control ','placeholder':'prix...'}}) }}
+                    </div>
+                    <div class="form-group">
+                            <label >PRIX VENTE : </label>
+
+                            {{ form_widget(edit_form.prixAchat,{'attr':{'type':'','class':'form-control ','placeholder':'prix...'}}) }}
+                    </div>
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">DISPONBILITE: </label>
+                            {{ form_widget(edit_form.disponibilite,{'attr':{'type':'text','class':'form-control ','placeholder':'Name...'}}) }}
+                    </div>
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">DESCRIPTION:  </label>
+                            {{ form_widget(edit_form.description,{'attr':{'type':'text','class':'form-control','placeholder':'description'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">IMAGE: </label>
+                        <div class="error-message "></div>
+                        <button class="btn" style="padding: 2rem; border-radius: 10px"> {{ form_widget(edit_form.file,{'attr': {'class': 'btn btn-primary'}}) }}</button>
+                    </div>
+
+
+                    <div class="form-group">
+                            <label for="exampleInputEmail1"> CATEGORIE: </label>
+                            {{ form_widget(edit_form.categorie,{'attr':{'type':'text','class':'form-control','placeholder':'description'}}) }}
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                        <a href="{{ path('produit_index', { 'id': produit.id }) }}"><div class="btn btn-warning" >MODIFIER</div></a>
+
+                        <a href="{{ path('produit_index') }}"><div class="btn btn-danger">Back to the list</div></a>
+                    </div>
+
+
+                {{ form_end(edit_form) }}
+        </section>
+    </section>
+{% endblock %}

@@ -1,0 +1,119 @@
+<?php
+
+
+namespace entrepotBundle\Entity;
+Use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+/**
+ * @ORM\Entity
+ *
+ */
+class Question
+{
+    /**
+     * @var int
+     * @ORM\Column(name="Id",type="integer")
+     *@ORM\Id
+     *@ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="ekteb haja")
+     */
+    private $contenu;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $type;
+    /**
+     * @ORM\ManyToOne(targetEntity="Reclamation")
+     * @ORM\JoinColumn(name="idreclamation",referencedColumnName="Id")
+     */
+    private  $idreclamation;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
+     * @return mixed
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContenu()
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * @param mixed $contenu
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdreclamation()
+    {
+        return $this->idreclamation;
+    }
+
+    /**
+     * @param mixed $idreclamation
+     */
+    public function setIdreclamation($idreclamation)
+    {
+        $this->idreclamation = $idreclamation;
+    }
+
+}

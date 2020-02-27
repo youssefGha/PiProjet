@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+<section style="background: #EAEAEA" id="main-content">
+    <section style="background: #EAEAEA" class="wrapper">
+        <section  class="row mt">
+
+
+            <section style="background: #EAEAEA" class="panel">
+
+                <div class="chat-room-head">
+                    <h3>Ajouter Produits </h3>
+                    <form action="#" class="pull-right position">
+
+                    </form>
+                </div>
+
+                <center>
+
+
+                    {{ form_start(form) }}
+
+                    <table>
+                        <div style="color:black" class="form-group">
+
+                            <label style="color:black" >libellé: </label>
+                            {{ form_widget(form.lib) }}
+                        </div>
+                        <div style="color:black" class="form-group">
+
+
+                            <label style="color:black" >Prix de vente: </label>
+                            {{ form_widget(form.prixvente) }}
+
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+
+
+                            <label style="color:black" >Prix d'achat: </label>
+                            {{ form_widget(form.prixachat) }}
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+                            <label style="color:black" >Disponibilité: </label>
+                            {{ form_widget(form.disponibilite) }}
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+
+                            <label style="color:black" >Description : </label>
+                            {{ form_widget(form.description) }}
+
+
+
+                        </div>
+                        <div style="color:black" class="form-group">
+
+                            <label style="color:black" >Image: </label>
+                            {{ form_widget(form.image) }}
+
+
+
+
+
+
+
+
+                        {{ form_end(form) }}
+                        <div class="compose-btn">
+
+                            <button class="btn btn-sm"><i class="fa fa-times"></i> <a href="{{ path('Produit_affiche') }}">Back to the list</a></button>
+                        </div><br>
+
+                        <div class="compose-btn">
+                            <tr>
+
+
+                            </tr>
+                        </div><br>
+
+
+                        <div class="compose-btn">
+                            <tr>
+
+
+                            </tr>
+                        </div><br>
+
+                        <div class="compose-btn">
+                            <tr>
+
+                            </tr>
+                        </div><br>
+                        <span class="fileupload-process"></span>
+                    </table>
+
+
+                    <input class="btn btn-info" type="submit" value="Add" />
+
+                    <ul>
+                        <li>
+                        </li>
+                    </ul>
+                </center>
+
+            </section>
+        </section>
+    </section>
+
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

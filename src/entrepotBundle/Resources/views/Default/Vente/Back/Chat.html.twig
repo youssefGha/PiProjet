@@ -1,0 +1,87 @@
+{% extends 'baseback.html.twig' %}
+
+{% block content %}
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <!-- page start-->
+            <div style="background-color: white; box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 0 0.25rem 0.53125rem rgba(4,9,20,0.05), 0 0.125rem 0.1875rem rgba(4,9,20,0.03); border-radius: 5px">
+                <aside class="" style="padding: 3rem">
+                    <div class="col-md-12">
+                        <h3>Chat Room: Support
+                        </h3>
+                        <hr>
+                    </div>
+                    <table class="table" >
+                        <div class="group-rom" style="margin-bottom: 2rem">
+                            <div class="first-part odd" style="color: crimson;"><b>HISTORIQUE CHAT: </b> </div>
+                            <div class="second-part" style="color: crimson;" > <b>MOTIF : {{ reclamation.motif }}</b></div>
+                            <div class="third-part" style="color: crimson;"><b>{{ reclamation.date|date }}</b></div>
+                        </div>
+                        <div class="col-md-12">
+                            <h1>
+                                <p>VOS QUESTIONS!:</p>
+                                <hr>
+                            </h1>
+                        </div>
+                        {% for q in q %}
+                        <div class="group-rom" style="display: flex; flex-direction: column" >
+                            <div class="second-part" style="color: black; background-color: #e0f3ff; border-radius: 30px; border-top-left-radius: .25rem; margin: 1rem; width: 100%">
+                                    <b>
+                                        {{ q.contenu }}
+                                    </b>
+                            </div>
+                            <div class="third-part" style="color: black; margin: 1rem"><b>{{ q.date|date }}</b></div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-12">
+                            <h1>
+                                <p>REPONSE!:</p>
+                                <hr>
+                            </h1>
+                        </div>
+                        {% for r in r %}
+                        <div class="group-rom" style="display: flex; flex-direction: column" >
+                            <div class="second-part" style="color: black; background-color: #e0f3ff; border-radius: 30px; border-top-right-radius: .25rem; margin: 1rem; width: 100%">
+                                <b>{% if r.idreclamation == question.idreclamation  %}
+                                        {% if r.contenu == "false" %}
+                                            <p style="color: crimson;"><b> RECLAMATION NON TRAITE</b></p>
+                                        {% else %}
+                                            <p style="color: black; text-align: right">  {{ r.contenu }} </p>
+                                        {% endif %}
+                                    {% endif %} </b>
+                            </div>
+                            <div class="" style="color: black; margin: 1rem"><b>{{ r.date|date }}</b></div>
+                        </div>
+                        {% endfor %}
+
+                    </table>
+                    <footer>
+                        {{ form_start(edit_form) }}
+                        <div class="row">
+                            <div class="col-xs-10" style="display: flex; justify-content: center">
+                                <div>
+                                    <i class="fa fa-comments" aria-hidden="true"  ></i>
+                                    <span>Your message :</span>
+                                </div>
+                                <textarea style="width: 100%;" class=" border-color-4"{{ form_widget(edit_form.contenu) }}</textarea>
+                            </div>
+                            <div class="col-xs-2">
+                                <button class="btn btn-theme" value="Send" style="width: 100%"> Send</button>
+                            </div>
+                        </div>
+                        {{ form_end(edit_form) }}
+                    </footer>
+                </aside>
+
+            </div>
+            <!-- page end-->
+        </section>
+        <!-- /wrapper -->
+    </section>
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+{% endblock %}
+
+
+
